@@ -10,6 +10,7 @@
       <img src="../assets/images/onit-logo.png" />
       <div>
         <router-link to="/" class="links">Home</router-link>
+        <router-link to="#" class="links">Blog</router-link>
         <router-link to="/talentmoz" class="links">Tech Talent Moz</router-link>
         <button @click="openModal" class="links">
           Cadastrar-se para o TIM
@@ -405,6 +406,10 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+#evento-card div{
+  margin: 1.5rem;
 }
 
 #subscriber {

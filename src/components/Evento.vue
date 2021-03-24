@@ -2,7 +2,7 @@
   <div class="evento-container">
     <div class="tipo-local">
       <div class="local">
-        <FontAwesomeIcon icon="map-marker"/>
+        <FontAwesomeIcon icon="map-marker" />
         <p>{{ local }}</p>
       </div>
       <p class="tipo">{{ tipo }}</p>
@@ -15,14 +15,14 @@
         <small>{{ data }}</small>
       </div>
     </div>
+    <a class="adicionar-calendar"><FontAwesomeIcon icon="plus"/> Adicionar no Google Calendar</a>
   </div>
 </template>
 
 <script>
-
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 export default {
-  components:{FontAwesomeIcon,},
+  components: { FontAwesomeIcon },
   props: {
     local: String,
     titulo: String,
@@ -40,7 +40,6 @@ export default {
   width: 35rem;
   height: 35rem;
   background: white;
-  margin: 1.5rem;
   padding: 4rem;
   box-sizing: border-box;
 }
@@ -56,7 +55,7 @@ export default {
   color: #8c97ac;
   width: 19rem;
 }
-.local svg{
+.local svg {
   color: #8c97ac;
   margin-right: 0.5rem;
 }
@@ -111,5 +110,22 @@ export default {
   color: #f5a623;
   background: rgba(245, 166, 35, 0.148721);
   border-radius: 0.5rem;
+}
+
+.adicionar-calendar {
+  font-family: "Circular Std";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 1.3rem;
+  line-height: 1.6rem;
+
+  /* Blue 1 */
+
+  color: #2f80ed;
+  margin-top: 2.7rem;
+}
+
+.adicionar-calendar svg{
+  margin-right: 1rem;
 }
 </style>

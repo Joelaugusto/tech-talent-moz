@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue';
 import TalentMoz from '../views/TalentMoz';
+import OnitLogin from '../views/OnitLogin';
+import Plataforma from "../views/Plataforma";
 
 const routes = [
   {
@@ -12,6 +14,16 @@ const routes = [
     path: '/talentMoz',
     name: 'TalentMoz',
     component: TalentMoz,
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: OnitLogin,
+  },
+  {
+    path: '/onit',
+    name: 'Onit',
+    component: Plataforma,
   },
   {
     path: '/about',

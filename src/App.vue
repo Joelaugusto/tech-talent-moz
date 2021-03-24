@@ -6,14 +6,13 @@
 </script>
 
 <style lang="css">
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 
 @font-face {
   font-family: "Circular Std";
   src: url("../src/assets/fonts/CircularStd-Black.woff2") format("woff2"),
     url("../src/assets/fonts/CircularStd-Black.woff") format("woff");
 }
-
 button,
 a {
   cursor: pointer;
@@ -41,5 +40,6 @@ h1 {
   outline-style: none;
   box-shadow: none;
   border-color: transparent;
+  box-sizing: border-box;
 }
 </style>
