@@ -16,17 +16,13 @@
         <p id="ttm">Tech Talent Moz</p>
       </div>
       <div class="dropbox-container" :style="hide">
-        <select class="dropbox" @change="onSearch(pesquisa)" v-model="pesquisa.disponibilidade">
-          <option value="">Disponibilidade</option>
+        <select class="dropbox" @change="onSearch(pesquisa)" v-model="pesquisa.disponiblidade">
+          <option value="Disponibilidade">Disponibilidade</option>
           <option value="full-time">Full-time</option>
           <option value="part-time">Part-Time</option>
         </select>
-        <select class="dropbox" @change="onSearch(pesquisa)" v-model="pesquisa.taxa">
-          <option value="">Taxa por Hora</option>
-        </select>
-        <select class="dropbox" @change="onSearch(pesquisa)">
-          <option>Skills</option>
-        </select>
+        <input class="dropbox" type="number" placeholder="Taxa Mínima por Hora" min="0" @change="onSearch(pesquisa)" v-model="pesquisa.taxaMin"/>
+        <input class="dropbox" type="number" placeholder="Taxa Maxima por Hora" min="0" @change="onSearch(pesquisa)" v-model="pesquisa.taxaMax"/>
       </div>
     </div>
     <div></div>
@@ -42,10 +38,10 @@ export default {
     return {
       hide: "display: none",
       pesquisa: {
-        search : "",
-        disponiblidade: "Full-time",
-        taxaMin: 0,
-        taxaMax:0,
+        search : '',
+        disponiblidade:'',
+        taxaMin:'',
+        taxaMax:'',
       }
     };
   },

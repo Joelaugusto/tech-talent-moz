@@ -1,7 +1,7 @@
 <template>
   <div class="card-container">
     <div class="card-icon">
-        <img src="../assets/images/msg.svg"/>
+        <img :src="icon"/>
     </div>
     <div class="card-info">
       <p>{{ title }}</p>
@@ -14,7 +14,7 @@
 export default {
   props: {
     title: String,
-    body: String,
+    body: Object,
     icon: String,
   },
 };

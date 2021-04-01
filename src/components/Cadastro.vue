@@ -1,9 +1,10 @@
 <template>
-  <form id="form-container">
+  <form id="form-container" @submit="registrar">
     <h1 class="h1">Cadastro para Tech Talent Moz</h1>
-    <div>
+    <div class="equal-div">
+      <div>
       <label class="label"> Nome e Apelido </label>
-      <input class="input" type="text" placeholder="Ex: Jhon Doe" required />
+      <input class="input" type="text" placeholder="Ex: Jhon Doe" required v-model="nome" />
     </div>
     <div>
       <label class="label">E-mail</label>
@@ -12,7 +13,18 @@
         type="email"
         placeholder="Ex:jhon@email.com"
         required
-        autocomplete="on"
+        autocomplete="on" v-model="email"
+      />
+    </div>
+    </div>
+    <div>
+      <label class="label">Titulo</label>
+      <input
+        class="input"
+        type="text"
+        placeholder="Ex:backend, frontend, UX/UI..."
+        required
+        autocomplete="on" v-model="titulos"
       />
     </div>
     <div class="double-input">
@@ -22,6 +34,7 @@
           class="input"
           type="text"
           placeholder="Ex: UX Designer, PHP, HTML, CSS, etc..."
+          v-model="skills"
         />
       </div>
       <div>
@@ -32,6 +45,7 @@
           min="0"
           placeholder="Ex: 250 por hora"
           require
+          v-model="taxa"
         />
       </div>
     </div>
@@ -42,8 +56,8 @@
       </div>
       <div>
         <label class="label"> Disponibilidade </label>
-        <select class="input" id="disponibilidade">
-          <option value="Disponibilidade" readonly>Disponibilidade</option>
+        <select class="input" id="disponibilidade" v-model="disponibilidade">
+          <option value="Disponibilidade">Disponibilidade</option>
           <option value="Full Time">Full time</option>
           <option value="Part-Time">Part Time</option>
         </select>
@@ -52,11 +66,11 @@
     <div class="equal-div">
       <div >
       <label class="label"> Link do Linkedin </label>
-      <input class="input" type="url" placeholder="Link do linkedin" />
+      <input class="input" type="url" placeholder="Link do linkedin" v-model="linkedin"/>
     </div>
     <div>
       <label class="label">Link do Github</label>
-      <input class="input" type="url" placeholder="Link do Github" />
+      <input class="input" type="url" placeholder="Link do Github" v-model="github" />
     </div>
     </div>
     
@@ -86,10 +100,21 @@
 </template>
 
 <script>
+
+import api from '../services/api';
 export default {
   data() {
     return {
       inputFileText: "",
+      nome: "",
+      email: "",
+      titulos: "",
+      skills: "",
+      taxa: "",
+      portifolio: "",
+      linkedin: "",
+      github: "",
+      foto: ""
     };
   },
   methods: {
@@ -97,6 +122,24 @@ export default {
       console.log(e.target.value);
       this.inputFileText = e.target.value;
     },
+    registrar: async function (e){
+      e.preventDefault();
+
+      const nome = this.nome;
+      const email = this.email;
+      const skills = this.skills;
+      const taxa = this.taxa;
+      const portifolio = this.portifolio;
+      const linkedin = this.linkedin;
+      const github = this.github;
+      const titulos = this.titulos.toLowerCase().split(',');
+      await api.post("/",{nome,email,titulos,skills,taxa,portifolio,linkedin, github});
+
+      console.log({nome,email,titulos,skills,taxa,portifolio,linkedin, github});
+
+      //o que fazer depois de registrar???
+      this.$router.push('/talentmoz');
+    }
   },
 };
 </script>
@@ -136,7 +179,7 @@ select {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #f7f8fa;
+  background: white;
   box-shadow: 0.02rem 0.02rem 0.9rem #1f1f1f66;
   border-radius: 3.8rem;
   padding: 5rem;
@@ -148,7 +191,7 @@ select {
 
 .input {
   width: 32em;
-  height: 4.6rem;
+  height: 3.6rem;
   margin-top: 1rem;
   background: #ffffff;
   border: 0.01rem solid rgba(207, 216, 220, 0.5);
@@ -156,7 +199,7 @@ select {
   margin-bottom: 2rem;
   padding-left: 1.2rem;
   text-align: left;
-  font-family: Roboto;
+  font-family: "Circular Std";
   font-style: normal;
   font-size: 1.6rem;
   line-height: 1.4rem;
@@ -177,12 +220,12 @@ select {
   height: 4.6rem;
   background: linear-gradient(135deg, #79beff 0%, #448aff 100%);
   border-radius: 0.6rem;
-  margin-top: 4rem;
+  margin-top: 3rem;
   border: none;
 }
 
 .label {
-  font-family: Roboto;
+  font-family: "Circular Std";
   font-weight: normal;
   font-size: 1.6rem;
   line-height: 1.3rem;
@@ -202,21 +245,22 @@ select {
 
 .file-box {
   width: 42rem;
-  height: 4.6rem;
+  height: 3.6rem;
   border: 0.01rem solid rgba(207, 216, 220, 0.5);
   background: #ffffff;
-
   border-radius: 0.6rem;
+  cursor: pointer
 }
 
 .file-button {
   width: 10.4rem;
-  height: 4.6rem;
+  height: 3.6rem;
   background: linear-gradient(135deg, #79beff 0%, #448aff 100%);
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 #anexar {
@@ -225,7 +269,7 @@ select {
 }
 
 #alabel {
-  font-family: Roboto;
+  font-family: "Circular Std";
   font-weight: normal;
   font-size: 1.6rem;
   line-height: 1.3rem;

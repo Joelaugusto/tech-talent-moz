@@ -3,7 +3,7 @@
     <img :src="imagem" class="pic" />
     <div class="user-details">
       <div class="prof-time">
-        <p class="user-prof">{{titulo}}</p>
+        <p class="user-prof">{{getTitulos(titulos)}}</p>
         <div class="dot"></div>
         <p class="user-time">{{disponibilidade}}</p>
       </div>
@@ -31,7 +31,7 @@
 export default {
   props:{
     nome: String,
-    titulo: String,
+    titulos: [Object],
     skills : [Object],
     disponibilidade: String,
     portifolio: String,
@@ -42,12 +42,20 @@ export default {
   },
   methods:{
     getSkills: function(arrayOfSkills){
-
       let aux = [];
       arrayOfSkills.map((skill)=>{
         aux.push(skill.skill);
       });
-      return aux.toString(); //converte de array para string
+      const titulos = aux.toString();
+      return titulos.length<=30?titulos:titulos.slice(0,30)+"...";
+    },
+    getTitulos: function(arrayOfTitulos){
+      let aux = [];
+      arrayOfTitulos.map((titulo)=>{
+        aux.push(titulo.titulo);
+      });
+      const titulos = aux.toString();
+      return titulos.length<=30?titulos:titulos.slice(0,30)+"...";
     }
   }
 };
@@ -108,6 +116,7 @@ p {
   font-size: 12px;
   line-height: 16px;
   color: #b8c4cb;
+  width: 28ch;
 }
 
 .user-time {
