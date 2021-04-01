@@ -2,10 +2,10 @@
   <div class="evento-container">
     <div class="tipo-local">
       <div class="local">
-        <FontAwesomeIcon icon="map-marker" />
+        <img :src="Pin" />
         <p>{{ local }}</p>
       </div>
-      <p class="tipo">{{ tipo }}</p>
+      <p :class="'tipo '+tipo ">{{ tipo }}</p>
     </div>
     <p class="titulo">{{ titulo }}</p>
     <div class="company">
@@ -15,14 +15,25 @@
         <small>{{ data }}</small>
       </div>
     </div>
+    <div class="participantes">
+      <photo :photo="IMG" />
+      <photo :photo="IMG" />
+      <photo :photo="IMG" />
+      <photo :photo="IMG" />
+
+    </div>
     <a class="adicionar-calendar"><FontAwesomeIcon icon="plus"/> Adicionar no Google Calendar</a>
   </div>
 </template>
 
 <script>
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+//import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import Pin from '../assets/images/pin-3.svg'
+import Photo from './Photo.vue';
+import IMG from '../assets/images/Cravers.png'
 export default {
-  components: { FontAwesomeIcon },
+  components: { Photo },
+ // components: { FontAwesomeIcon },
   props: {
     local: String,
     titulo: String,
@@ -30,10 +41,39 @@ export default {
     company: String,
     data: String,
   },
+  data(){
+    return {Pin,IMG}
+  }
 };
 </script>
 
 <style lang="css" scoped>
+
+ .Coding{
+   color:#258AFF;
+   background: #258AFF26;
+ }
+ .Network{
+   color: #F5A623;
+   background: #F5A62326;
+ }
+
+ .Design{
+   color:#1d42fd;
+   background: #1d42fd26;
+ }
+
+ .Learning{
+   color:#0FBC49;
+   background: #0FBC4919;
+  
+ }
+
+ .participantes{
+   margin-top: 2.8rem;
+   height: 3.8rem;
+ }
+
 .evento-container {
   display: flex;
   flex-direction: column;
@@ -55,7 +95,7 @@ export default {
   color: #8c97ac;
   width: 19rem;
 }
-.local svg {
+.local img {
   color: #8c97ac;
   margin-right: 0.5rem;
 }
@@ -70,7 +110,7 @@ export default {
 
   color: #1d293f;
   margin-top: 2.2rem;
-  margin-bottom: 12rem;
+  margin-bottom: 2.4rem;
 }
 
 .tipo-local {
@@ -103,19 +143,13 @@ export default {
 
 .tipo {
   padding: 0.4rem;
-  font-style: normal;
-  font-weight: normal;
   font-size: 1.3rem;
   line-height: 1.6rem;
-  color: #f5a623;
-  background: rgba(245, 166, 35, 0.148721);
   border-radius: 0.5rem;
 }
 
 .adicionar-calendar {
   font-family: "Circular Std";
-  font-style: normal;
-  font-weight: normal;
   font-size: 1.3rem;
   line-height: 1.6rem;
 

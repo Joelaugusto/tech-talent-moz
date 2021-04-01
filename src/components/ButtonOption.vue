@@ -1,7 +1,7 @@
 <template>
   <button class="btn-container">
     <!--<FontAwesomeIcon :icon="icon" />-->
-    <img src="./../assets/images/Home.svg"/>
+    <img :src="icon" />
     {{ titulo }}
   </button>
 </template>
@@ -11,7 +11,7 @@
 export default {
   props: {
     titulo: String,
-    icon: String,
+    icon: Object,
   },
   components: {
     //FontAwesomeIcon,
@@ -20,6 +20,12 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.logo {
+  background-color: red;
+  -webkit-mask: url({{icon}}) no-repeat center;
+  mask: url({{icon}}) no-repeat center;
+}
+
 .btn-container {
   width: 30.2rem;
   height: 6.165rem;
@@ -37,13 +43,14 @@ export default {
   transition: 0.2s;
 }
 
-.btn-container svg {
+.btn-container img {
   margin-right: 1.3rem;
+  width: 2.4rem;
+  height: 2.4rem;
 }
 
 .btn-container:hover {
   background: #f5f8fe;
   color: #3464cd;
 }
-
 </style>

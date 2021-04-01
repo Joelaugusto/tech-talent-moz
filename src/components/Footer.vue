@@ -36,6 +36,7 @@ export default {};
 #footer {
   display: flex;
   justify-content: center;
+  margin-bottom: 5rem;
 }
 
 .link-container {
@@ -45,7 +46,7 @@ export default {};
 
 .links {
   display: block;
-  font-family: Circular Std;
+  font-family: "Circular Std";
   font-style: normal;
   font-weight: normal;
   font-size: 1.6rem;
@@ -57,7 +58,7 @@ export default {};
 }
 
 .titulo {
-  font-family: Circular Std;
+  font-family: "Circular Std";
   font-style: normal;
   font-weight: 500;
   font-size: 1.8rem;

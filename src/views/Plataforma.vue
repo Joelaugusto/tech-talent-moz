@@ -2,11 +2,19 @@
   <div id="plataforma">
     <div class="plataforma-div">
       <logo class="logo" />
-      <button-option titulo="Home" icon="Home.svg" />
-      <button-option titulo="Perfil" icon="user" />
-      <button-option titulo="Oportunidades" icon="home" />
+      <button-option titulo="Home" :icon="HomeIcon" />
+      <button-option titulo="Perfil" :icon="Profile" />
+      <button-option titulo="Oportunidades" :icon="Discovery" />
+      <button-option titulo="Updates Semanais" :icon="Calendar" />
+      <button-option titulo="Sessão em grupo" :icon="Chat" />
+      <button-option titulo="Currículo" :icon="Document" />
+      <button-option titulo="Comunidades" :icon="Category" />
+      <button-option titulo="Sair" :icon="LogOut" id="logout"/>
     </div>
-    <div class="plataforma-div"></div>
+    <div class="plataforma-div">
+      <h1>Bem Vindo ao Onit!</h1>
+      <Progress :percentage="25"/>
+    </div>
     <div class="plataforma-div div-eventos">
       <h2>Eventos</h2>
       <evento
@@ -19,7 +27,7 @@
         company="Cravers Tech"
       /><evento
         local="Maputo, Moz"
-        tipo="Network"
+        tipo="Coding"
         titulo="Tic Tech Talk-Business"
         icon=""
         :patrocinado="true"
@@ -27,7 +35,7 @@
         company="Cravers Tech"
       /><evento
         local="Maputo, Moz"
-        tipo="Network"
+        tipo="Design"
         titulo="Tic Tech Talk-Business"
         icon=""
         :patrocinado="true"
@@ -35,7 +43,7 @@
         company="Cravers Tech"
       /><evento
         local="Maputo, Moz"
-        tipo="Network"
+        tipo="Learning"
         titulo="Tic Tech Talk-Business"
         icon=""
         :patrocinado="true"
@@ -176,18 +184,49 @@
 
 <script>
 import ButtonOption from "../components/ButtonOption.vue";
+import Progress from '../components/Progress.vue';
 import Evento from "./../components/Evento";
 import Logo from "./../components/Logo";
+
+
+//icons
+import HomeIcon from "./../assets/images/Home.svg";
+import Chat from "./../assets/images/Chat.svg";
+import Category from "./../assets/images/Category.svg";
+import Discovery from "./../assets/images/Discovery.svg";
+import Document from "./../assets/images/Document.svg";
+import Profile from "./../assets/images/Profile.svg";
+import LogOut from "./../assets/images/log-out.svg";
+import Calendar from './../assets/images/Calendar.svg';
+
 export default {
   components: {
     Evento,
     ButtonOption,
     Logo,
+    Progress,
+  },
+  data() {
+    return {
+      HomeIcon,
+      Chat,
+      Category,
+      Discovery,
+      Document,
+      Profile,
+      LogOut,
+      Calendar,
+
+    };
   },
 };
 </script>
 
 <style lang="css" scoped>
+
+#logout{
+  margin-top: 11.6rem;
+}
 #plataforma {
   display: grid;
   grid-template-columns: 31.5rem 1fr 37.8rem;

@@ -6,17 +6,7 @@
     <cadastro />
   </div>
   <div id="home-page">
-    <nav id="navbar">
-      <img src="../assets/images/onit-logo.png" />
-      <div>
-        <router-link to="/" class="links">Home</router-link>
-        <router-link to="#" class="links">Blog</router-link>
-        <router-link to="/talentmoz" class="links">Tech Talent Moz</router-link>
-        <button @click="openModal" class="links">
-          Cadastrar-se para o TIM
-        </button>
-      </div>
-    </nav>
+    <Navbar />
     <div id="wellcome">
       <div>
         <h1>Bem Vindo ao ONIT</h1>
@@ -75,17 +65,17 @@
       <card
         title="Mentoria"
         body="Acede a Mentoria de experts que vão guiar e fazer o acompanhamento constante"
-        icon="../assets/images/node.svg"
+        :icon="MentoriaIcon"
       />
       <card
         title="Cursos Pagos"
         body="Cursos pagos de programação, Front End, DevOps, Mobile, UX Design e muito Mais"
-        icon="../assets/images/msg.svg"
+        :icon="CursosPagosIcon"
       />
       <card
         title="Projectos"
         body="Uma lista de projectos interessantes para a melhoria das capacidades individuais"
-        icon="../assets/images/chat.svg"
+        :icon="ProjectosIcon"
       />
     </div>
 
@@ -153,7 +143,9 @@
     </div>
 
     <div id="subscriber">
-      <img src="../assets/images/evento.png" />
+      <div id="event-notify-container">
+        <event-notify/>
+      </div>
       <div>
         <p>Junta-te a nossa comunidade</p>
         <h2>Receba alerta instatâneo no seu Email</h2>
@@ -179,6 +171,16 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import Footer from "../components/Footer";
 import Card from "../components/Card";
 import Cadastro from "../components/Cadastro";
+import Navbar from '../components/Onit/Navbar';
+
+//icons
+import MentoriaIcon from "./../assets/images/msg.svg";
+import CursosPagosIcon from "../assets/images/node.svg";
+import ProjectosIcon from "./../assets/images/chat-45.svg";
+
+//images
+import SubscriberIMG from "./../assets/images/Group4.svg";
+import EventNotify from '../components/EventNotify.vue';
 export default {
   components: {
     Evento,
@@ -186,6 +188,16 @@ export default {
     Footer,
     Card,
     Cadastro,
+    EventNotify,
+    Navbar
+  },
+  data() {
+    return {
+      MentoriaIcon,
+      CursosPagosIcon,
+      ProjectosIcon,
+      SubscriberIMG,
+    };
   },
   methods: {
     openModal: function () {
@@ -205,6 +217,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+
 #closeModel {
   position: absolute;
   top: 20px;
@@ -224,50 +238,6 @@ export default {
   top: calc(8vh - 6.2rem);
 }
 
-#navbar {
-  display: flex;
-  justify-content: space-between;
-  margin: 1rem 5vw;
-  height: 8rem;
-}
-
-#navbar img {
-  margin-top: 3.1rem;
-}
-
-.links {
-  font-family: "Circular Std";
-  margin-right: 4.7rem;
-  margin-top: 4.6rem;
-  text-decoration: none;
-  font-size: 1.6rem;
-  line-height: 2.8rem;
-  text-align: right;
-  color: #1d293f;
-}
-
-.links:first-child {
-  font-family: "Circular Std";
-  font-weight: bold;
-}
-
-.links:last-child {
-  font-family: "Circular Std";
-  margin-top: 3.6rem;
-  font-weight: 500;
-  font-size: 1.3rem;
-  line-height: 2rem;
-  /* identical to box height, or 154% */
-
-  text-align: center;
-
-  color: #e9f7fe;
-  background: #0f53fa;
-  border-radius: 0.5rem;
-  height: 4.5rem;
-  width: 18.9rem;
-  border: none;
-}
 
 #wellcome {
   display: flex;
@@ -408,7 +378,7 @@ export default {
   justify-content: center;
 }
 
-#evento-card div{
+#evento-card div {
   margin: 1.5rem;
 }
 
@@ -421,6 +391,13 @@ export default {
 #subscriber img {
   width: 63.9rem;
   height: 68.8rem;
+}
+
+#event-notify-container {
+  background: url("./../assets/images/Group4.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 60rem;
 }
 
 #subscriber div {

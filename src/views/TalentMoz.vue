@@ -1,9 +1,10 @@
 <template>
-  <navbar :onSearch="onSearch"/>
+  <navbar :onSearch="onSearch" />
   <div>
-    <div id="home" >
+    <div id="home">
       <user-profile
-        v-for="(user, index) in users" :key="index"
+        v-for="(user, index) in users"
+        :key="index"
         :nome="user.nome"
         :skills="user.skills"
         :disponibilidade="user.disponibilidade"
@@ -31,21 +32,19 @@ export default {
   },
 
   methods: {
-    onSearch: function(e) {
-        //e.onSearch = e.splint(',');
-        let skills = ""+e.search;
-        e.search = skills.split(",");
-        console.log(e);
-    }
+    onSearch: function (e) {
+      //e.onSearch = e.splint(',');
+      let skills = "" + e.search;
+      e.search = skills.split(",");
+      console.log(e);
+    },
   },
   created: function () {
-    
-    api.get("/",).then((result) => {
+    api.get("/").then((result) => {
       this.users = result.data; //acesso proibido por cors, rever depois
       console.log(this.users);
     });
 
-    console.log(this.users);
   },
 };
 </script>
