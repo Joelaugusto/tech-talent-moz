@@ -4,6 +4,7 @@ import TalentMoz from '../views/TalentMoz';
 import OnitLogin from '../views/OnitLogin';
 import Plataforma from "../views/Plataforma";
 import BlogHome from "../views/BlogHome"
+import PostDetails from "../views/PostDetails"
 
 const routes = [
   {
@@ -20,6 +21,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: OnitLogin,
+  },
+  {
+    path: '/post/:id',
+    name: 'PostDetais',
+    component: PostDetails,
   },
   {
     path: '/onit',

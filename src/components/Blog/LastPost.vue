@@ -5,7 +5,7 @@
         <h3>{{ title }}</h3>
         <p>{{ body }}</p>
       </div>
-      <foot :link="link" :date="date" />
+      <foot :link="'/post/'+link" :date="date"/>
     </div>
     <img :src="image" />
   </div>

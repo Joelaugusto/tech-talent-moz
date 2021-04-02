@@ -3,7 +3,7 @@
     <img src="../../assets/images/onit-logo.png" />
     <div>
       <router-link to="/" class="links">Home</router-link>
-      <router-link to="#" class="links">Blog</router-link>
+      <router-link to="/blog" class="links">Blog</router-link>
       <router-link to="/talentmoz" class="links">Tech Talent Moz</router-link>
       <router-link to="/login" class="links">Entrar na plataforma</router-link>
       <!--<button @click="openModal" class="links">
