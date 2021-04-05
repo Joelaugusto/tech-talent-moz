@@ -1,5 +1,5 @@
 <template>
-  <nav>
+  <nav id="navbar">
     <div class="navbar">
       <img class="nada" src="./../assets/images/nada.png" />
       <div class="input">
