@@ -29,8 +29,6 @@
       <p class="body">{{ body }}</p>
       <p class="body obrigado">Originalmente publicado na Onit</p>
     </div>
-
-    
   </div>
 </template>
 
@@ -68,7 +66,7 @@ export default {
 .body-container {
   display: flex;
   align-items: center;
-  width: 115.7rem;
+  width: 147.5rem;
   height: 86.3rem;
   flex-direction: column;
 }
@@ -136,7 +134,7 @@ export default {
   margin-left: 5rem;
 }
 
-.obrigado{
+.obrigado {
   margin-top: 3rem;
 }
 </style>
