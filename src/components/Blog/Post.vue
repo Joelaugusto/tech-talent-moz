@@ -5,14 +5,14 @@
         <h3>{{ title }}</h3>
         <p>{{ body }}</p>
       </div>
-      <foot :link="link" :date="date"/>
+      <foot :link="'/post/' + link" :date="date" />
     </div>
     <img :src="image" />
   </div>
 </template>
 
 <script>
-import Foot from './Foot';
+import Foot from "./Foot";
 export default {
   props: {
     image: String,
@@ -22,8 +22,8 @@ export default {
     link: String,
   },
   components: {
-      Foot
-  }
+    Foot,
+  },
 };
 </script>
 
@@ -73,6 +73,7 @@ p {
   justify-content: space-between;
   align-content: space-between;
   padding: 2.21rem;
+  height: 27rem;
 }
 
 small:first-child {

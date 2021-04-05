@@ -3,12 +3,12 @@
     <Navbar />
     <div id="onit-blog">
       <div id="blog-wellcome">
-        <h1>ONIT - Blog</h1>
+        <h1>Blog</h1>
         <p>
           Aqui encontras Noticias e Informações sobre a Area de IT e Tecnologia
           em Moçambique
         </p>
-        <p>Uma Parceria com a technoplus.co.mz</p>
+        <router-link to="/#">Uma Parceria com a technoplus.co.mz</router-link>
       </div>
       <img :src="croodsImg" />
     </div>
@@ -18,7 +18,7 @@
       title="Social media + AI: conta do sucesso"
       body="Pelo menos 3.5 biliões de pessoas estão neste momento a usar algum tipo de rede social. São aproximadamente 49% da população mundial, um número muito grande."
       date="1 de Abril de 2021"
-      link="#"
+      link="12443"
     />
     <post-container />
     <div id="last-section">
@@ -29,13 +29,15 @@
           readable content of a page when looking at its layout. The point of
           using Lorem Ipsum is that it has a more-or-less normal distribution...
         </p>
-        <!--<foot date="2 de Abril de 2021" link="#" id="bug" />-->
+        <foot date="2 de Abril de 2021" link="#" />
       </div>
       <img :src="blog7Img" />
     </div>
     <div class="btn-container">
       <div>
-        <button class="ver-mais">Ver Mais<img id="arrow" :src="arrowDown" /></button>
+        <button class="ver-mais">
+          Ver Mais<img id="arrow" :src="arrowDown" />
+        </button>
       </div>
     </div>
     <Footer />
@@ -47,19 +49,19 @@ import Footer from "../components/Blog/Footer";
 import Navbar from "../components/Onit/Navbar";
 import lastPost from "../components/Blog/LastPost";
 import PostContainer from "./../components/Blog/PostContainer";
-//import Foot from "../components/Blog/Foot";
+import Foot from "../components/Blog/Foot";
 
 import croodsImg from "../assets/images/croods1.svg";
 import papersImg from "../assets/images/papers1.svg";
 import blog7Img from "../assets/images/image7-blog.svg";
-import arrowDown from '../assets/images/arrowDown.svg';
+import arrowDown from "../assets/images/arrowDown.svg";
 export default {
   components: {
     Footer,
     Navbar,
     lastPost,
     PostContainer,
-    // Foot,
+    Foot,
   },
   data() {
     return {
@@ -98,7 +100,8 @@ export default {
   color: #000000;
 }
 
-#blog-wellcome p {
+#blog-wellcome p,
+a {
   font-family: "Inter";
   font-style: normal;
   font-weight: normal;
@@ -111,7 +114,7 @@ export default {
   color: #4a5568;
 }
 
-#blog-wellcome p + p {
+#blog-wellcome a {
   font-size: 2.4rem;
   line-height: 2.9rem;
   color: #0f53fa;
@@ -120,17 +123,19 @@ export default {
 #last-section {
   display: flex;
   justify-content: center;
-}
-#last-section div {
-  width: 60.87rem;
-  height: 69.2rem;
-  padding: 13.56rem 8.716rem;
-  background: #f7fafc;
+  margin-top: 4rem;
 }
 
 #last-section img {
   width: 72.63rem;
   height: 69.2rem;
+}
+
+#last-section-contents {
+  width: 60.87rem;
+  height: 69.2rem;
+  padding: 13.56rem 8.716rem;
+  background: #f7fafc;
 }
 
 #last-section-contents h2 {
@@ -154,13 +159,6 @@ export default {
   color: #718096;
   margin-bottom: 4.25rem;
 }
-#bug {
-  width: 100%;
-  height: 4rem;
-  justify-content: space-between;
-  margin: 0;
-  padding: 0;
-}
 
 .ver-mais {
   background: #6b46c1;
@@ -176,7 +174,7 @@ export default {
 .btn-container {
   display: flex;
   justify-content: center;
-  margin-top:4.3rem;
+  margin-top: 4.3rem;
   margin-bottom: 2.1rem;
 }
 
@@ -186,7 +184,7 @@ export default {
   justify-content: flex-end;
 }
 
-#arrow{
+#arrow {
   width: 2.309rem;
   height: 2.297rem;
 }

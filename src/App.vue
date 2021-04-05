@@ -68,5 +68,6 @@ h1 {
   box-shadow: none;
   border-color: transparent;
   box-sizing: border-box;
+  text-decoration: none;
 }
 </style>
