@@ -44,6 +44,7 @@
       <textarea id="comment" />
       <input type="submit" value="Enviar Comentário" />
     </form>
+    <Comments/>
   </div>
 </template>
 
@@ -52,6 +53,7 @@ import linkedinIcon from "../../assets/images/linkedin.svg";
 import twitterIcon from "../../assets/images/twitter.svg";
 import instagramIcon from "../../assets/images/instagram.svg";
 import userImage from "../../assets/images/avatar.svg";
+import Comments from './Comments';
 
 import TagContainer from "./TagContainer";
 import BlogAuthorContainer from "./BlogAuthorContainer";
@@ -66,6 +68,7 @@ export default {
   components: {
     TagContainer,
     BlogAuthorContainer,
+    Comments,
   },
   data() {
     return {
