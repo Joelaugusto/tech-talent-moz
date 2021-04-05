@@ -59,7 +59,7 @@
         Moçambicano? Estamos ansiosos para ouvir sua opinião, deixe-a ficar aqui nos
         comentários."
     />
-    <Footer class="bug" />
+    <Footer/>
   </div>
 </template>
 
@@ -89,9 +89,5 @@ export default {
 .imagem {
   width: 147.5rem;
   height: 59.9rem;
-}
-
-.bug {
-  margin-top: 40rem;
 }
 </style>
