@@ -28,23 +28,16 @@
     <div class="body-container">
       <p class="body">{{ body }}</p>
       <a id="arrow-top" href="#navbar"><img :src="arrowTop" /></a>
-      <p class="body obrigado">Originalmente publicado na Onit</p>
+      <p class="body obrigado">Originalmente publicado na Technoplus</p>
     </div>
 
     <tag-container />
-    <blog-author-container
-      author="Ferdi sdsdsfdfs"
-      info="Digital Product Design"
-      :image="userImage"
-    />
-    <button v-if="!comentario" @click="comment" id="write-comment-btn">
+    <blog-author-container :author="author" :info="info" :image="userImage" />
+    <button @click="comment" id="write-comment-btn">
       Escrever seu primeiro Comentario
     </button>
-    <form v-else id="comment-form" @submit="sendComment">
-      <textarea id="comment" />
-      <input type="submit" value="Enviar Comentário" />
-    </form>
-    <Comments/>
+    <Comment nameTime="Now" v-if="commentar" :closeNewComment="comment" :postId="postId" :updateComment="updateComment"/>
+    <Comments :comments="comments" />
   </div>
 </template>
 
@@ -52,8 +45,9 @@
 import linkedinIcon from "../../assets/images/linkedin.svg";
 import twitterIcon from "../../assets/images/twitter.svg";
 import instagramIcon from "../../assets/images/instagram.svg";
-import userImage from "../../assets/images/avatar.svg";
-import Comments from './Comments';
+//import userImage from "../../assets/images/avatar.svg";
+import Comments from "./Comments";
+import Comment from "./Comment";
 
 import TagContainer from "./TagContainer";
 import BlogAuthorContainer from "./BlogAuthorContainer";
@@ -64,11 +58,19 @@ export default {
     author: String,
     date: String,
     body: String,
+    info: String,
+    comments: [Object],
+    tags: [String],
+    postId: String,
+    updateComment:Function,
+    userImage: String,
+    postImage: String,
   },
   components: {
     TagContainer,
     BlogAuthorContainer,
     Comments,
+    Comment,
   },
   data() {
     return {
@@ -76,17 +78,12 @@ export default {
       twitterIcon,
       instagramIcon,
       arrowTop,
-      userImage,
-      commentario: false,
+      commentar: false,
     };
   },
   methods: {
     comment: function () {
-      this.commentario = !this.commentario;
-    },
-    sendComment: function (e) {
-      e.preventDefault();
-      this.commentario = false;
+      this.commentar = !this.commentar;
     },
   },
 };

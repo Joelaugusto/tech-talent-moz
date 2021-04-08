@@ -1,6 +1,6 @@
 <template>
   <div id="footer">
-    <p><span>ONIT - BLOG</span>,Todos direito reservados</p>
+    <p><span>TECHNOPLUS - BLOG</span>,Todos direito reservados</p>
     <div>
       <router-link to="#" class="footer-link"><img class="icon" :src="instagramIcon" /></router-link>
       <router-link to="#" class="footer-link"><img class="icon" :src="twitterIcon" /></router-link>

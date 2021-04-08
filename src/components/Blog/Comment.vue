@@ -6,26 +6,73 @@
         <strong class="name-time">{{ nameTime }}</strong>
       </div>
       <div class="comment-container-last">
-        <p v-if="comentario">{{ comentario }}</p>
-          <textarea v-else class="comment-text-area" placeholder="Comentário" />
-          <button class="comment-btn">Responder</button>
+        <p class="paragraph" v-if="comentario">{{ comentario }}</p>
+        <textarea
+          v-else
+          v-model="newComment"
+          class="comment-text-area"
+          placeholder="Comentário"
+        />
+        <button class="comment-btn" @click="sendComment">
+          {{ comentario ? "Responder" : "Postar" }}
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import api from "../../services/api";
 export default {
   props: {
     nameTime: String,
     comment: String,
     image: String,
     comentario: String,
+    show: Function,
+    postId: String,
+    closeNewComment: Function,
+    updateComment:Function
+  },
+  data() {
+    return { newComment: "" };
+  },
+  methods: {
+    sendComment: async function (e) {
+      e.preventDefault();
+      this.closeNewComment();
+      const comment = this.newComment;
+      const _id = this.postId;
+      console.log(_id);
+      const email = "joelaugusto97@gmail.com ";
+      await api.post("/comments", { comment, email, _id });
+      this.updateComment();
+    },
   },
 };
 </script>
 
 <style lang="css" scoped>
+.paragraph {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  /* identical to box height, or 167% */
+
+  /* Midnight */
+
+  color: #001b45;
+
+  /* Inside Auto Layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  margin: 10px 0px;
+}
+
 .name-time {
   font-family: "Inter";
   font-style: normal;

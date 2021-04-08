@@ -5,7 +5,7 @@ const axios = require('axios').default;
 
 
 const api = axios.create({
-    baseURL: 'http://localhost/tech-talent-back-moz/public/api'
+    baseURL: 'http://localhost:4000'
 });
 
 export default api;

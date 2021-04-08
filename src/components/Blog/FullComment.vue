@@ -2,30 +2,17 @@
   <div>
     <Comment
       :image="avatar"
-      nameTime="11Horas"
-      comentario="Comentario ahdjahdka aksdhasjdhasa adhjaksdhkajsda adada"
+      :nameTime="comentario.date"
+      :comentario="comentario.comment"
+      :show="showComment"
     />
     <div class="comments">
-      <Comment
+      <Comment :image="avatar" nameTime="11Horas" v-if="show" />
+    <!--  <Comment
         :image="avatar"
         nameTime="11Horas"
-        comentario="Comentario ahdjahdka aksdhasjdhasa adhjaksdhkajsda adada"
-      />
-      <Comment
-        :image="avatar"
-        nameTime="11Horas"
-        comentario="Comentario ahdjahdka aksdhasjdhasa adhjaksdhkajsda adada"
-      />
-      <Comment
-        :image="avatar"
-        nameTime="11Horas"
-        comentario="Comentario ahdjahdka aksdhasjdhasa adhjaksdhkajsda adada"
-      />
-      <Comment
-        :image="avatar"
-        nameTime="11Horas"
-        comentario="Comentario ahdjahdka aksdhasjdhasa adhjaksdhkajsda adada"
-      />
+      :comentario="comentario.comment"
+      />-->
     </div>
   </div>
 </template>
@@ -36,8 +23,16 @@ import Comment from "./Comment";
 export default {
   components: { Comment },
   data() {
-    return { avatar };
+    return { avatar, show: false };
   },
+  methods:{
+      showComment: function(){
+          this.show = true;
+      }
+  },
+  props:{
+    comentario: Object,
+  }
 };
 </script>
 
