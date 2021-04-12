@@ -14,13 +14,13 @@
     </div>
 
     <last-post
-      :image="papersImg"
-      title="Social media + AI: conta do sucesso"
-      body="Pelo menos 3.5 biliões de pessoas estão neste momento a usar algum tipo de rede social. São aproximadamente 49% da população mundial, um número muito grande."
+      :image="posts[0].image"
+      :title="posts[0].title.slice(0,50)"
+      :body="posts[0].post.slice(0,150)+'...'"
       date="1 de Abril de 2021"
-      link="12443"
+      :link="posts[0]._id"
     />
-    <post-container />
+    <post-container :posts="posts.slice(1,posts.length)" />
     <div id="last-section">
       <div id="last-section-contents">
         <h2>What is Lorem Ipsum? Titulo Aqui</h2>
@@ -55,6 +55,8 @@ import croodsImg from "../assets/images/croods1.svg";
 import papersImg from "../assets/images/papers1.svg";
 import blog7Img from "../assets/images/image7-blog.svg";
 import arrowDown from "../assets/images/arrowDown.svg";
+
+import api from "./../services/api";
 export default {
   components: {
     Footer,
@@ -69,7 +71,13 @@ export default {
       papersImg,
       blog7Img,
       arrowDown,
+      posts: [],
     };
+  },
+  async created() {
+    this.posts = (await api.get("/posts", {})).data;
+    console.log(this.posts);
+    console.log("yap");
   },
 };
 </script>

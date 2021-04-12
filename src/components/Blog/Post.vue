@@ -7,7 +7,7 @@
       </div>
       <foot :link="'/post/' + link" :date="date" />
     </div>
-    <img :src="image" />
+    <img :src="image" class="post-img"/>
   </div>
 </template>
 
@@ -28,6 +28,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.post-img{
+  width: 41.5rem;
+  height: 24.788rem;
+}
 #post {
   display: flex;
   justify-content: center;

@@ -7,7 +7,7 @@
       </div>
       <foot :link="'/post/'+link" :date="date"/>
     </div>
-    <img :src="image" />
+    <img :src="image" class="image"/>
   </div>
 </template>
 
@@ -27,6 +27,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.image{
+width:60rem;
+height:33.6rem;}
+
 #lastPost {
   display: flex;
   justify-content: center;

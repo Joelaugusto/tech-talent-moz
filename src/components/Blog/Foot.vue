@@ -1,7 +1,13 @@
 <template>
   <div class="foot">
     <small>{{ date }}</small>
-    <router-link :to="link">Ler Mais</router-link>
+    <router-link
+      @click="location.reload()"
+      :key="link"
+      :to="link"
+      class="ler-mais"
+      >Ler Mais</router-link
+    >
   </div>
 </template>
 
@@ -31,7 +37,7 @@ small:first-child {
   color: #718096;
 }
 
-a {
+.ler-mais {
   font-family: "Inter";
   font-style: normal;
   font-weight: bold;

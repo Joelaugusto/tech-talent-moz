@@ -23,7 +23,7 @@ const routes = [
     component: OnitLogin,
   },
   {
-    path: '/post/:id',
+    path: '/post/:id/',
     name: 'PostDetais',
     component: PostDetails,
   },
