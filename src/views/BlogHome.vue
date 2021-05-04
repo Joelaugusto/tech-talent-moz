@@ -15,12 +15,12 @@
 
     <last-post
       :image="posts[0].image"
-      :title="posts[0].title.slice(0,50)"
-      :body="posts[0].post.slice(0,150)+'...'"
+      :title="posts[0].title.slice(0, 50)"
+      :body="posts[0].text.slice(0, 150) + '...'"
       date="1 de Abril de 2021"
-      :link="posts[0]._id"
+      :link="posts[0].id"
     />
-    <post-container :posts="posts.slice(1,posts.length)" />
+    <post-container :posts="posts.slice(1, posts.length)" />
     <div id="last-section">
       <div id="last-section-contents">
         <h2>What is Lorem Ipsum? Titulo Aqui</h2>
@@ -65,6 +65,18 @@ export default {
     PostContainer,
     Foot,
   },
+  created: async function () {
+    await api
+      .get("/blog/publication")
+      .then((result) => {
+        const data = result.data;
+        this.posts = data.content;
+        console.log(this.posts);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
   data() {
     return {
       croodsImg,
@@ -73,11 +85,6 @@ export default {
       arrowDown,
       posts: [],
     };
-  },
-  async created() {
-    this.posts = (await api.get("/posts", {})).data;
-    console.log(this.posts);
-    console.log("yap");
   },
 };
 </script>

@@ -5,11 +5,11 @@
       <user-profile
         v-for="(user, index) in users"
         :key="index"
-        :nome="user.nome"
+        :nome="user.name"
         :skills="user.skills"
-        :disponibilidade="user.disponibilidade"
-        :titulos="user.titulos"
-        :taxa="user.taxa"
+        :disponibilidade="user.availability"
+        :titulos="user.titles"
+        :taxa="user.taxe"
         :github="user.github"
         :linkedin="user.linkedin"
         :portifolio="user.portifolio"
@@ -40,9 +40,11 @@ export default {
     },
   },
   created: function () {
-    api.get("/").then((result) => {
-      this.users = result.data; //acesso proibido por cors, rever depois
+    api.get("/user").then((result) => {
+      const data = result.data; //acesso proibido por cors, rever depois
+      this.users = data.content;
       console.log(this.users);
+      console.log(data);
     });
 
   },

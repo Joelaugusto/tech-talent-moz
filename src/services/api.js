@@ -5,7 +5,7 @@ const axios = require('axios').default;
 
 
 const api = axios.create({
-    baseURL: 'http://localhost:4000'
+    baseURL: 'http://localhost:8080/api'
 });
 
 export default api;

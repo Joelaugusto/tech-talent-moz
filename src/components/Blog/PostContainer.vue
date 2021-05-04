@@ -7,7 +7,7 @@
       :title="post.title.slice(0,50)"
       :body="post.post.slice(0,150)+'...'"
       date="1 de Abril de 2021"
-      :link="post._id"
+      :link="post.id"
     />
   </div>
 </template>
