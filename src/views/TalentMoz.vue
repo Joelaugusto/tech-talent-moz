@@ -9,11 +9,11 @@
         :skills="user.skills"
         :disponibilidade="user.availability"
         :titulos="user.titles"
-        :taxa="user.taxe"
+        :taxa="user.tax"
         :github="user.github"
         :linkedin="user.linkedin"
         :portifolio="user.portifolio"
-        imagem="https://via.placeholder.com/100"
+        :imagem="user.image"
       />
     </div>
   </div>

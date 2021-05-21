@@ -11,9 +11,8 @@
       <button-option titulo="Comunidades" :icon="Category" />
       <button-option titulo="Sair" :icon="LogOut" id="logout"/>
     </div>
-    <div class="plataforma-div">
-      <h1>Bem Vindo ao Onit!</h1>
-      <Progress :percentage="25"/>
+    <div class="plataforma-div main-div">
+      <onit-header :percent="50"/>
     </div>
     <div class="plataforma-div div-eventos">
       <h2>Eventos</h2>
@@ -184,14 +183,14 @@
 
 <script>
 import ButtonOption from "../components/ButtonOption.vue";
-import Progress from '../components/Progress.vue';
 import Evento from "./../components/Evento";
 import Logo from "./../components/Logo";
+import OnitHeader from "../components/Onit/OnitHeader";
 
 
 //icons
 import HomeIcon from "./../assets/images/Home.svg";
-import Chat from "./../assets/images/Chat.svg";
+import Chat from "./../assets/images/chat.svg";
 import Category from "./../assets/images/Category.svg";
 import Discovery from "./../assets/images/Discovery.svg";
 import Document from "./../assets/images/Document.svg";
@@ -199,12 +198,14 @@ import Profile from "./../assets/images/Profile.svg";
 import LogOut from "./../assets/images/log-out.svg";
 import Calendar from './../assets/images/Calendar.svg';
 
+
+
 export default {
   components: {
     Evento,
     ButtonOption,
     Logo,
-    Progress,
+    OnitHeader,
   },
   data() {
     return {
@@ -230,14 +231,19 @@ export default {
 #plataforma {
   display: grid;
   grid-template-columns: 31.5rem 1fr 37.8rem;
-  background: #e5e5e5;
-}
+  background:  #F7F8FA;}
 
 .plataforma-div {
   overflow: auto;
   height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.main-div{
+  margin: 0 5vw;
+  margin-top: 50px;
+
 }
 
 .plataforma-div:first-child,

@@ -1,11 +1,11 @@
 <template>
   <div class="user-profile">
-    <img :src="imagem" class="pic" />
+    <img :src="image" class="pic" />
     <div class="user-details">
       <div class="prof-time">
         <p class="user-prof">{{getTitulos(titulos)}}</p>
         <div class="dot"></div>
-        <p class="user-time">{{disponibilidade}}</p>
+        <p class="user-time">{{disponibilidade ? 'Full-Time' : 'Part-Time'}}</p>
       </div>
       <p class="user-name">{{nome}}</p>
       <div class="divs">
@@ -17,11 +17,11 @@
         <p class="skill">Taxa por Hora:<span class="skill-at">MZN {{taxa}}</span></p>
       </div>
       <div class="div-link">
-        <a :href="portifolio">Portifolio</a>
-        <div class="slash"></div>
-        <a :href="linkedin">Linkedin</a>
-        <div class="slash"></div>
-        <a :href="github">Github</a>
+        <a v-if="portifolio" :href="portifolio">Portifolio</a>
+        <div v-if="portifolio && (linkedin || github)" class="slash"></div>
+        <a v-if="linkedin" :href="linkedin">Linkedin</a>
+        <div v-if="portifolio && github" class="slash"></div>
+        <a v-if="github" :href="github">Github</a>
       </div>
     </div>
   </div>
@@ -38,7 +38,7 @@ export default {
     linkedin: String,
     github: String,
     taxa: Number,
-    imagem: String,
+    image: String,
   },
   methods:{
     getSkills: function(arrayOfSkills){
@@ -47,15 +47,15 @@ export default {
         aux.push(skill.skill);
       });
       const titulos = aux.toString();
-      return titulos.length<=30?titulos:titulos.slice(0,30)+"...";
+      return titulos.length<=20?titulos:titulos.slice(0,20)+"...";
     },
     getTitulos: function(arrayOfTitulos){
       let aux = [];
       arrayOfTitulos.map((titulo)=>{
-        aux.push(titulo.titulo);
+        aux.push(` ${titulo.title.toUpperCase()}`);
       });
       const titulos = aux.toString();
-      return titulos.length<=30?titulos:titulos.slice(0,30)+"...";
+      return titulos.length<=20?titulos:titulos.slice(0,20)+"...";
     }
   }
 };
@@ -91,7 +91,7 @@ export default {
 .div-link a {
   color: #1d71ff;
   font-size: 12px;
-  font-weight: 400px;
+  font-weight:400px;
   line-height: 16px;
 }
 
@@ -116,7 +116,7 @@ p {
   font-size: 12px;
   line-height: 16px;
   color: #b8c4cb;
-  width: 28ch;
+  width: 20ch;
 }
 
 .user-time {
