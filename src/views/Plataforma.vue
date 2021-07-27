@@ -202,7 +202,7 @@ import Logo from "./../components/Logo";
 
 //icons
 import HomeIcon from "./../assets/images/Home.svg";
-import Chat from "./../assets/images/Chat.svg";
+import Chat from "./../assets/images/chat.svg";
 import Category from "./../assets/images/Category.svg";
 import Discovery from "./../assets/images/Discovery.svg";
 import Document from "./../assets/images/Document.svg";
