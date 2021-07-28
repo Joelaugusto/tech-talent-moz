@@ -37,14 +37,14 @@ export default {
       let skills = "" + e.search;
       e.search = skills.split(",");
       console.log(api.arguments)
-      api.get("/api/user").then((result) => {
+      api.get("/api/techtalent/developers").then((result) => {
       this.users = result.data; //acesso proibido por cors, rever depois
       console.log(this.users);
     }).catch(error=>{console.log(error)});
     },
   },
   created: function () {
-    api.get("/api/user").then((result) => {
+    api.get("/api/techtalent/developers").then((result) => {
       this.users = result.data.content; //acesso proibido por cors, rever depois
       console.log(this.users);
     }).catch(error=>{console.log(error)});
