@@ -1,17 +1,19 @@
 <template>
   <nav id="navbar">
     <div class="navbar">
-      <img class="nada" src="./../assets/images/nada.png" />
+      <div class="logo">
+        <img :src="images.onitLogoColorFull" alt="logo"/>
+        <img :src="images.onitLogo" alt="logo"/>
+      </div>
       <div class="input">
-        <div></div>
+        <img :src="images.searchIcon" alt=""/>
         <input type="text" placeholder="Procurar" @keyup="onSearch(pesquisa)" v-model="pesquisa.search" />
       </div>
       <button class="btn" @click="autoHide">Filtrar</button>
-      <img class="logo" src="./../assets/images/onit-logo.png" />
     </div>
     <div class="filtros" :style="''">
       <div class="onit">
-        <p id="onit">ONIT</p>
+        <router-link to="/" id="onit">ONIT</router-link>
         <div id="triangulo"></div>
         <p id="ttm">Tech Talent Moz</p>
       </div>
@@ -30,12 +32,18 @@
 </template>
 
 <script>
+import onitLogoColorFull from '../assets/images/OnIt-Logo-Colorful.svg';
+import onitLogo from '../assets/images/OnIt-Logo2.svg';
+import searchIcon from '../assets/images/Search.svg';
 export default {
   props: {
     onSearch: Function,
   },
   data() {
     return {
+      images:{
+        onitLogoColorFull, onitLogo,searchIcon,
+      },
       hide: "display: none",
       pesquisa: {
         search : '',
@@ -60,49 +68,50 @@ export default {
 
 <style lang="css" scoped>
 .navbar {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
   justify-content: space-between;
   height: 80px;
+  align-items: center;
 }
 
-.nada {
-  width: 50px;
-  height: 20px;
-  margin-top: 30px;
-  margin-left: 5vw;
-  margin-right: 5vw;
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.logo img:first-child{
+  margin-right: 10px;
+}
 .input {
   border: 1px solid rgba(207, 216, 220, 0.5);
   border-radius: 6px;
   height: 48px;
-  margin-top: 16px;
   margin-right: 2vw;
   margin-left: 2vw;
+  display:grid;
+  grid-template-columns: 20px 1fr;
+  align-items: center;
+  padding: 0 22px;
+}
+
+.input img{
+  width: 15px;
+  height: 15px;
 }
 
 .input input {
-  margin: 0 3vw;
-  margin-top: 16px;
-  width: 50vw;
+  margin: 0 1vw;
   border: none;
 }
 
-.logo {
-  margin-top: 12px;
-  margin-right: 5vw;
-  margin-bottom: 11px;
-}
-
 .btn {
-  width: 140px;
   height: 48px;
   background: linear-gradient(135deg, #79beff 0%, #448aff 100%);
   border-radius: 6px;
   border: none;
   margin-right: 39px;
-  margin-top: 16px;
 }
 
 .filtros {
@@ -110,6 +119,7 @@ export default {
   height: 57px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .dropbox {
@@ -118,14 +128,12 @@ export default {
   margin-right: 12px;
   border: 1px solid rgba(207, 216, 220, 0.5);
   border-radius: 6px;
-  margin-top: 9px;
-  margin-bottom: 8px;
   font-size: 14px;
   line-height: 14px;
-  align-items: center;
   letter-spacing: 0.3px;
   color: #78909c;
-  padding-left: 17px;
+  background: white;
+  padding: 0 15px;
 }
 
 .dropbox-container {

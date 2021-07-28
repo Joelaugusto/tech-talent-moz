@@ -7,7 +7,7 @@
         :key="index"
         :name="user.name"
         :skills="user.skills"
-        :avalability="user.avalability"
+        :availability="user.availability"
         :titles="user.titles"
         :tax="user.tax"
         :github="user.github"

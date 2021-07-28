@@ -25,7 +25,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .conteiner {
   display: flex;
   flex-direction: column;

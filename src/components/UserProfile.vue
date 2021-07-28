@@ -3,9 +3,9 @@
     <img :src="image" class="pic" />
     <div class="user-details">
       <div class="prof-time">
-        <p class="user-prof">{{getTitulos(titles)}}</p>
+        <p class="user-prof">{{getTitles(titles)}}</p>
         <div class="dot"></div>
-        <p class="user-time">{{avalability}}</p>
+        <p class="user-time">{{availability?'Full Time':'Part Time'}}</p>
       </div>
       <p class="user-name">{{name}}</p>
       <div class="divs">
@@ -33,7 +33,7 @@ export default {
     name: String,
     titles: [Object],
     skills : [Object],
-    avalability: String,
+    availability: String,
     portifolio: String,
     linkedin: String,
     github: String,
@@ -49,13 +49,13 @@ export default {
       const titulos = aux.toString();
       return titulos.length<=30?titulos:titulos.slice(0,30)+"...";
     },
-    getTitulos: function(arrayOfTitulos){
+    getTitles: function(arrayOfTitles){
       let aux = [];
-      arrayOfTitulos.map((titulo)=>{
-        aux.push(titulo.titulo);
+      arrayOfTitles.map((title)=>{
+        aux.push(title.title);
       });
       const titulos = aux.toString();
-      return titulos.length<=30?titulos:titulos.slice(0,30)+"...";
+      return titulos.length<=15?titulos:titulos.slice(0,15)+"...";
     }
   }
 };
@@ -66,12 +66,10 @@ export default {
   display: flex;
   flex-direction: row;
   width: 327px;
-  max-width: 500px;
   height: 145px;
   border: 1px solid rgba(207, 216, 220, 0.5);
   margin: 10px;
   border-radius: 6px;
-  flex-grow: 5;
 }
 
 .pic {
@@ -116,7 +114,7 @@ p {
   font-size: 12px;
   line-height: 16px;
   color: #b8c4cb;
-  width: 28ch;
+  width: 17ch;
 }
 
 .user-time {
