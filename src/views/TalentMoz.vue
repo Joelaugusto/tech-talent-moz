@@ -5,15 +5,15 @@
       <user-profile
         v-for="(user, index) in users"
         :key="index"
-        :nome="user.nome"
+        :name="user.name"
         :skills="user.skills"
-        :disponibilidade="user.disponibilidade"
-        :titulos="user.titulos"
-        :taxa="user.taxa"
+        :avalability="user.avalability"
+        :titles="user.titles"
+        :tax="user.tax"
         :github="user.github"
         :linkedin="user.linkedin"
         :portifolio="user.portifolio"
-        imagem="https://via.placeholder.com/100"
+        image="https://via.placeholder.com/100"
       />
     </div>
   </div>
@@ -36,14 +36,18 @@ export default {
       //e.onSearch = e.splint(',');
       let skills = "" + e.search;
       e.search = skills.split(",");
-      console.log(e);
+      console.log(api.arguments)
+      api.get("/api/user").then((result) => {
+      this.users = result.data; //acesso proibido por cors, rever depois
+      console.log(this.users);
+    }).catch(error=>{console.log(error)});
     },
   },
   created: function () {
-    api.get("/").then((result) => {
-      this.users = result.data; //acesso proibido por cors, rever depois
+    api.get("/api/user").then((result) => {
+      this.users = result.data.content; //acesso proibido por cors, rever depois
       console.log(this.users);
-    });
+    }).catch(error=>{console.log(error)});
 
   },
 };

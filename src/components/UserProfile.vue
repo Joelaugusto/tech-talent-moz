@@ -1,20 +1,20 @@
 <template>
   <div class="user-profile">
-    <img :src="imagem" class="pic" />
+    <img :src="image" class="pic" />
     <div class="user-details">
       <div class="prof-time">
-        <p class="user-prof">{{getTitulos(titulos)}}</p>
+        <p class="user-prof">{{getTitulos(titles)}}</p>
         <div class="dot"></div>
-        <p class="user-time">{{disponibilidade}}</p>
+        <p class="user-time">{{avalability}}</p>
       </div>
-      <p class="user-name">{{nome}}</p>
+      <p class="user-name">{{name}}</p>
       <div class="divs">
         <div>
           <p class="skill">
             Skills:<span class="skill-at">{{getSkills(skills)}}</span>
           </p>
         </div>
-        <p class="skill">Taxa por Hora:<span class="skill-at">MZN {{taxa}}</span></p>
+        <p class="skill">Taxa por Hora:<span class="skill-at">MZN {{tax}}</span></p>
       </div>
       <div class="div-link">
         <a :href="portifolio">Portifolio</a>
@@ -30,15 +30,15 @@
 <script>
 export default {
   props:{
-    nome: String,
-    titulos: [Object],
+    name: String,
+    titles: [Object],
     skills : [Object],
-    disponibilidade: String,
+    avalability: String,
     portifolio: String,
     linkedin: String,
     github: String,
-    taxa: Number,
-    imagem: String,
+    tax: Number,
+    image: String,
   },
   methods:{
     getSkills: function(arrayOfSkills){
