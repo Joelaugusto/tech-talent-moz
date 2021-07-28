@@ -13,7 +13,7 @@
         :github="user.github"
         :linkedin="user.linkedin"
         :portifolio="user.portifolio"
-        image="https://via.placeholder.com/100"
+        :image="user.image || 'https://via.placeholder.com/100'"
       />
     </div>
   </div>
