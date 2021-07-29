@@ -10,34 +10,34 @@
       </div>
 
       <!--Formulario de Login-->
-      <form class="form-login" v-if="login">
+      <form class="form-login" v-if="page.login" @submit="login">
         <h1>Login</h1>
         <label>Email ID</label>
-        <input type="text" required class="login-input" />
+        <input type="email" required class="login-input" v-model="form.email"/>
 
         <label>Palavra Passe</label>
-        <input type="password" class="login-input" />
+        <input type="password" class="login-input" v-model="form.password"/>
 
         <input type="submit" value="Entrar" class="login-input" />
         <a class="btn-form">Esqueceu Password?</a>
       </form>
 
       <!--Formulario de Registro-->
-      <form class="form-login" v-else>
+      <form class="form-login" @submit="createUser" v-else>
         <h1>Cadastrar-se</h1>
         <label>Email ID</label>
-        <input type="text" required class="login-input" />
+        <input type="email" required class="login-input"  v-model="form.email"/>
 
         <label>Escolha uma Palavra Passe</label>
-        <input type="password" class="login-input" />
+        <input type="password" class="login-input" v-model="form.password"/>
 
         <label>Confirmar Palavra Passe</label>
-        <input type="password" class="login-input" />
+        <input type="password" class="login-input" v-model="form.confirmPassword"/>
 
         <input type="submit" value="Entrar" class="login-input" />
       </form>
 
-      <button @click="switchForm" class="btn-form">{{ linkMsg }}</button>
+      <button @click="switchForm" class="btn-form">{{ page.linkMsg }}</button>
     </div>
   </div>
 </template>
@@ -45,24 +45,56 @@
 <script>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import Logo from './../components/Logo';
+import api from '../services/api';
 export default {
   data() {
     return {
-      login: true,
-      linkMsg: "Não tem conta? Registe aqui.",
+      page:{
+        login: true,
+        linkMsg: "Não tem conta? Registe aqui.",
+      },
+      form: {
+        email:null,password:null, passwordConfirm:null,
+      },
+      method: {push: (path)=>{this.$router.push({path: path})}}
     };
   },
   components: { FontAwesomeIcon,Logo },
   methods: {
     switchForm: function () {
-      this.login = !this.login; //define qual formulario será carregado
-
+      this.page.login = !this.page.login; //define qual formulario será carregado
       //define qual mensagem será colocada no botão de form
-      this.linkMsg === "Não tem conta? Registe aqui."
-        ? (this.linkMsg = "Já tem conta? Inicia uma sessão")
-        : (this.linkMsg = "Não tem conta? Registe aqui.");
+      this.page.linkMsg === "Não tem conta? Registe aqui."
+        ? (this.page.linkMsg = "Já tem conta? Inicia uma sessão")
+        : (this.page.linkMsg = "Não tem conta? Registe aqui.");
     },
+    createUser: async function (event){
+      event.preventDefault();
+      const {email, password,confirmPassword} = this.form;
+      if(password === confirmPassword){
+        await api.post('api/users',{email,password}).then(()=>{
+          this.login(event);
+        }).catch(err=>console.log(err));
+       }else{
+         alert('as senhas não conscidem!')
+       }
+      
+    },
+    login: async function (event) {
+      event.preventDefault();
+      const {email, password} = this.form;
+      await api.post('api/auth',{email,password}).then((token)=>{
+              document.cookie = `${token.data.type} ${token.data.accessToken}`;
+            }).catch((err)=>{
+              console.log(err)
+            })
+    }
   },
+  beforeMount(){
+    if(document.cookie) {
+      this.method.push('/onit')
+    }
+  }
 };
 </script>
 

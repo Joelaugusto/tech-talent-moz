@@ -16,15 +16,20 @@
         :image="user.image || 'https://via.placeholder.com/100'"
       />
     </div>
+    <Footer/>
   </div>
 </template>
 
 <script>
+//components
 import UserProfile from "./../components/UserProfile";
 import Navbar from "./../components/Navbar";
+import Footer from '../components/talent/Footer.vue';
+
+//services
 import api from "../services/api";
 export default {
-  components: { UserProfile, Navbar },
+  components: { UserProfile, Navbar, Footer },
   data() {
     return {
       users: [],
@@ -32,21 +37,17 @@ export default {
   },
 
   methods: {
-    onSearch: function (e) {
-      //e.onSearch = e.splint(',');
+    onSearch:async function (e) {
       let skills = "" + e.search;
       e.search = skills.split(",");
-      console.log(api.arguments)
-      api.get("/api/techtalent/developers").then((result) => {
-      this.users = result.data; //acesso proibido por cors, rever depois
-      console.log(this.users);
+      await api.get("/api/techtalent/developers",{skills}).then((result) => {
+      this.users = result.data.content;
     }).catch(error=>{console.log(error)});
     },
   },
-  created: function () {
-    api.get("/api/techtalent/developers").then((result) => {
-      this.users = result.data.content; //acesso proibido por cors, rever depois
-      console.log(this.users);
+  created:async function () {
+    await api.get("/api/techtalent/developers").then((result) => {
+      this.users = result.data.content;
     }).catch(error=>{console.log(error)});
 
   },
