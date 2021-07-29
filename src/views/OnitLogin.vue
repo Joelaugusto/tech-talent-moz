@@ -46,6 +46,7 @@
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import Logo from './../components/Logo';
 import api from '../services/api';
+import {getAccessToken} from '../services/cookies';
 export default {
   data() {
     return {
@@ -84,16 +85,23 @@ export default {
       event.preventDefault();
       const {email, password} = this.form;
       await api.post('api/auth',{email,password}).then((token)=>{
-              document.cookie = `${token.data.type} ${token.data.accessToken}`;
+              document.cookie = `accessToken=${token.data.type} ${token.data.accessToken};Secure`;
+              this.afterLogin();
             }).catch((err)=>{
               console.log(err)
             })
+    },
+    afterLogin () {
+      
+      if(getAccessToken()) {
+      api.get('api/auth/me').then(()=>{
+        this.method.push('/onit')
+      })
+    }
     }
   },
   beforeMount(){
-    if(document.cookie) {
-      this.method.push('/onit')
-    }
+    this.afterLogin();
   }
 };
 </script>
