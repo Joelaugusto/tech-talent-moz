@@ -1,17 +1,12 @@
 <template>
   <div>
     <AuthContainer>
-      <form class="form-login" @submit="login">
-        <h1>Login</h1>
+      <form class="form-login" @submit="sendPasswordRequest">
+        <h1>Recuperação de Conta</h1>
         <label>Email ID</label>
-        <input type="email" required class="login-input" v-model="form.email"/>
-
-        <label>Palavra Passe</label>
-        <input type="password" class="login-input" v-model="form.password"/>
-
+        <input type="email" required class="login-input"  v-model="form.email"/>
         <input type="submit" value="Entrar" class="login-input" />
-        <router-link to="/auth/password/request" class="btn-form">Esqueceu Password?</router-link>
-        <router-link to="/users/create" class="btn-form">Não tem conta? Registe aqui.</router-link>
+        <router-link to="/auth/login" class="btn-form">Retornar a tela de Login.</router-link>
       </form>
     </AuthContainer>
   </div>
@@ -23,37 +18,23 @@ import AuthContainer from '../components/Onit/AuthContainer.vue';
 export default {
   data() {
     return {
-      page:{
-        login: true,
-        recuperacao: false,
-        linkMsg: "Não tem conta? Registe aqui.",
-      },
       form: {
-        email:null,password:null, passwordConfirm:null,
+        email:null,
       },
       method: {push: (path)=>{this.$router.push({path: path})}}
     };
   },
   components: { AuthContainer},
   methods: {
-    login: async function (event) {
-      event.preventDefault();
-      const {email, password} = this.form;
-      await api.post('api/auth',{email,password}).then((token)=>{
-              localStorage.setItem('access-token',`${token.data.type} ${token.data.accessToken}`)
-              this.afterLogin();
-            }).catch((err)=>{
-              alert('O email ou senha está incorreto');
-              console.log(err)
-            })
-    },
-    afterLogin () {
-        this.method.push('/onit')
+    sendPasswordRequest:async function(e) {
+      e.preventDefault();
+      const {email} = this.form;
+      await api.post('api/users/password/reset',{email}).then(()=>{
+          alert(`Foi enviado um email para ${email}`)
+          this.method.push('/')
+        }).catch(()=>{alert(`Erro ao recuperar Senha`)});
     }
   },
-  beforeMount(){
-    this.afterLogin();
-  }
 };
 </script>
 

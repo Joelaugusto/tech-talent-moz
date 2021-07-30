@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue';
 import TalentMoz from '../views/TalentMoz';
 import OnitLogin from '../views/OnitLogin';
+import CreateUser from '../views/CreateUser';
+import PasswordRecoveryRequest from '../views/PasswordRecoveryRequest.vue';
+import PasswordRecoveryReset from '../views/PasswordRecoveryReset.vue';
 import Plataforma from "../views/Plataforma";
 import BlogHome from "../views/BlogHome"
 import PostDetails from "../views/PostDetails"
@@ -18,9 +21,24 @@ const routes = [
     component: TalentMoz,
   },
   {
-    path: '/login',
+    path: '/auth/login',
     name: 'Login',
     component: OnitLogin,
+  },
+  {
+    path: '/auth/password/request',
+    name: 'PasswordRecoveryRequest',
+    component: PasswordRecoveryRequest,
+  },
+  {
+    path: '/auth/password/reset/:token',
+    name: 'PasswordRecoveryReset',
+    component: PasswordRecoveryReset,
+  },
+  {
+    path: '/users/create',
+    name: 'CreateUsers',
+    component: CreateUser,
   },
   {
     path: '/post/:id/',
