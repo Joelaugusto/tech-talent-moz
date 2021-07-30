@@ -49,7 +49,7 @@ export default {
   font-family: Roboto;
   font-style: normal;
   font-weight: 900;
-  font-size: 4.8rem;
+  font-size: 3.9rem;
   line-height: 2rem;
   /* identical to box height, or 42% */
   letter-spacing: 0.03rem;

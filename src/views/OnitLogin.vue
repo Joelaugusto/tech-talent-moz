@@ -52,7 +52,11 @@ export default {
     }
   },
   beforeMount(){
-    this.afterLogin();
+    if(localStorage.getItem('access-token')){
+      api.get('api/auth/me',() => {
+        this.afterLogin();
+      });
+    }
   }
 };
 </script>
@@ -137,7 +141,7 @@ export default {
   font-size: 1.3rem;
   line-height: 1.3rem;
   /* identical to box height, or 100% */
-
+  margin-bottom: 15px;
   display: flex;
   align-items: center;
   text-align: center;
