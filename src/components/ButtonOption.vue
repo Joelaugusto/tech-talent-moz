@@ -2,7 +2,7 @@
   <button class="btn-container">
     <!--<FontAwesomeIcon :icon="icon" />-->
     <img :src="icon" />
-    {{ titulo }}
+    {{ title }}
   </button>
 </template>
 
@@ -10,7 +10,7 @@
 //import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 export default {
   props: {
-    titulo: String,
+    title: String,
     icon: Object,
   },
   components: {

@@ -1,233 +1,31 @@
 <template>
-  <div id="plataforma">
-    <div class="plataforma-div">
-      <logo class="logo" />
-      <button-option titulo="Home" :icon="HomeIcon" />
-      <button-option titulo="Perfil" :icon="Profile" />
-      <button-option titulo="Oportunidades" :icon="Discovery" />
-      <button-option titulo="Updates Semanais" :icon="Calendar" />
-      <button-option titulo="Sessão em grupo" :icon="Chat" />
-      <button-option titulo="Currículo" :icon="Document" />
-      <button-option titulo="Comunidades" :icon="Category" />
-      <button-option titulo="Sair" @click="logout()" :icon="LogOut" id="logout" />
-    </div>
-    <div class="plataforma-div">
-      <h1>Bem Vindo ao Onit!</h1>
-      <Progress :percentage="25" />
-      <fillperfil-card
-        buttonText="Completar Perfil"
-        mainText="complete seu perfil para que possa aparecer na Tech Talent Moz Platform.
+<OnitContainer>
+  <fillperfil-card
+    buttonText="Completar Perfil"
+    mainText="complete seu perfil para que possa aparecer na Tech Talent Moz Platform.
 					A Tech Talent Moz dá te mais abragencia a oportunidades, parcerias e projectos com empresas que procuram por desenvolvedores Moçambicanos."
-        title="Completar Perfil"
-      />
-      <fillperfil-card
-        buttonText="Escolha um Track"
-        mainText=" Escolha um track de desenvolvimento, a ONIT capacita jovens para se tornarem desenvolvidores profissionais, um track permite que haja foco, temos tracks para varios topicos como Frontend, Backend, UI/UX, DevOps, Project Manager, Cyber Segurança..."
-        title="Escolha um Track"
-      />
-    </div>
-    <div class="plataforma-div div-eventos">
-      <h2>Eventos</h2>
-      <evento
-        local="Maputo, Moz"
-        tipo="Network"
-        titulo="Tic Tech Talk-Business"
-        icon=""
-        :patrocinado="true"
-        data="02 de Fevereiro de 2021"
-        company="Cravers Tech"
-      /><evento
-        local="Maputo, Moz"
-        tipo="Coding"
-        titulo="Tic Tech Talk-Business"
-        icon=""
-        :patrocinado="true"
-        data="02 de Fevereiro de 2021"
-        company="Cravers Tech"
-      /><evento
-        local="Maputo, Moz"
-        tipo="Design"
-        titulo="Tic Tech Talk-Business"
-        icon=""
-        :patrocinado="true"
-        data="02 de Fevereiro de 2021"
-        company="Cravers Tech"
-      /><evento
-        local="Maputo, Moz"
-        tipo="Learning"
-        titulo="Tic Tech Talk-Business"
-        icon=""
-        :patrocinado="true"
-        data="02 de Fevereiro de 2021"
-        company="Cravers Tech"
-      /><evento
-        local="Maputo, Moz"
-        tipo="Network"
-        titulo="Tic Tech Talk-Business"
-        icon=""
-        :patrocinado="true"
-        data="02 de Fevereiro de 2021"
-        company="Cravers Tech"
-      /><evento
-        local="Maputo, Moz"
-        tipo="Network"
-        titulo="Tic Tech Talk-Business"
-        icon=""
-        :patrocinado="true"
-        data="02 de Fevereiro de 2021"
-        company="Cravers Tech"
-      /><evento
-        local="Maputo, Moz"
-        tipo="Network"
-        titulo="Tic Tech Talk-Business"
-        icon=""
-        :patrocinado="true"
-        data="02 de Fevereiro de 2021"
-        company="Cravers Tech"
-      /><evento
-        local="Maputo, Moz"
-        tipo="Network"
-        titulo="Tic Tech Talk-Business"
-        icon=""
-        :patrocinado="true"
-        data="02 de Fevereiro de 2021"
-        company="Cravers Tech"
-      /><evento
-        local="Maputo, Moz"
-        tipo="Network"
-        titulo="Tic Tech Talk-Business"
-        icon=""
-        :patrocinado="true"
-        data="02 de Fevereiro de 2021"
-        company="Cravers Tech"
-      /><evento
-        local="Maputo, Moz"
-        tipo="Network"
-        titulo="Tic Tech Talk-Business"
-        icon=""
-        :patrocinado="true"
-        data="02 de Fevereiro de 2021"
-        company="Cravers Tech"
-      /><evento
-        local="Maputo, Moz"
-        tipo="Network"
-        titulo="Tic Tech Talk-Business"
-        icon=""
-        :patrocinado="true"
-        data="02 de Fevereiro de 2021"
-        company="Cravers Tech"
-      /><evento
-        local="Maputo, Moz"
-        tipo="Network"
-        titulo="Tic Tech Talk-Business"
-        icon=""
-        :patrocinado="true"
-        data="02 de Fevereiro de 2021"
-        company="Cravers Tech"
-      /><evento
-        local="Maputo, Moz"
-        tipo="Network"
-        titulo="Tic Tech Talk-Business"
-        icon=""
-        :patrocinado="true"
-        data="02 de Fevereiro de 2021"
-        company="Cravers Tech"
-      /><evento
-        local="Maputo, Moz"
-        tipo="Network"
-        titulo="Tic Tech Talk-Business"
-        icon=""
-        :patrocinado="true"
-        data="02 de Fevereiro de 2021"
-        company="Cravers Tech"
-      /><evento
-        local="Maputo, Moz"
-        tipo="Network"
-        titulo="Tic Tech Talk-Business"
-        icon=""
-        :patrocinado="true"
-        data="02 de Fevereiro de 2021"
-        company="Cravers Tech"
-      /><evento
-        local="Maputo, Moz"
-        tipo="Network"
-        titulo="Tic Tech Talk-Business"
-        icon=""
-        :patrocinado="true"
-        data="02 de Fevereiro de 2021"
-        company="Cravers Tech"
-      /><evento
-        local="Maputo, Moz"
-        tipo="Network"
-        titulo="Tic Tech Talk-Business"
-        icon=""
-        :patrocinado="true"
-        data="02 de Fevereiro de 2021"
-        company="Cravers Tech"
-      /><evento
-        local="Maputo, Moz"
-        tipo="Network"
-        titulo="Tic Tech Talk-Business"
-        icon=""
-        :patrocinado="true"
-        data="02 de Fevereiro de 2021"
-        company="Cravers Tech"
-      /><evento
-        local="Maputo, Moz"
-        tipo="Network"
-        titulo="Tic Tech Talk-Business"
-        icon=""
-        :patrocinado="true"
-        data="02 de Fevereiro de 2021"
-        company="Cravers Tech"
-      /><evento
-        local="Maputo, Moz"
-        tipo="Network"
-        titulo="Tic Tech Talk-Business"
-        icon=""
-        :patrocinado="true"
-        data="02 de Fevereiro de 2021"
-        company="Cravers Tech"
-      />
-    </div>
-  </div>
+    title="Completar Perfil"
+  />
+  <fillperfil-card
+    buttonText="Escolha um Track"
+    mainText=" Escolha um track de desenvolvimento, a ONIT capacita jovens para se tornarem desenvolvidores profissionais, um track permite que haja foco, temos tracks para varios topicos como Frontend, Backend, UI/UX, DevOps, Project Manager, Cyber Segurança..."
+    title="Escolha um Track"
+  />
+</OnitContainer>
 </template>
 
 <script>
 import FillperfilCard from "../components/Onit/FillperfilCard.vue";
-import ButtonOption from "../components/ButtonOption.vue";
-import Progress from "../components/Progress.vue";
-import Evento from "./../components/Evento";
-import Logo from "./../components/Logo";
-
-//icons
-import HomeIcon from "./../assets/images/Home.svg";
-import Chat from "./../assets/images/chat.svg";
-import Category from "./../assets/images/Category.svg";
-import Discovery from "./../assets/images/Discovery.svg";
-import Document from "./../assets/images/Document.svg";
-import Profile from "./../assets/images/Profile.svg";
-import LogOut from "./../assets/images/log-out.svg";
-import Calendar from "./../assets/images/Calendar.svg";
+import OnitContainer from '../components/Onit/OnitContainer.vue';
 
 export default {
   components: {
-    Evento,
-    ButtonOption,
-    Logo,
-    Progress,
     FillperfilCard,
+    OnitContainer,
   },
   data() {
     return {
-      HomeIcon,
-      Chat,
-      Category,
-      Discovery,
-      Document,
-      Profile,
-      LogOut,
-      Calendar,
+
     };
   },
   methods: {

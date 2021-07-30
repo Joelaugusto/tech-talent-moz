@@ -1,5 +1,5 @@
 <template>
-  <form id="form-container" @submit="registrar">
+    <form id="form-container" @submit="registrar">
     <h1 class="h1">Cadastro para Tech Talent Moz</h1>
     <div class="equal-div">
       <div>
@@ -100,8 +100,7 @@
 </template>
 
 <script>
-
-import api from '../services/api';
+    import api from '../../services/api';
 export default {
   data() {
     return {
@@ -144,12 +143,8 @@ export default {
 };
 </script>
 
-
-
-
-
 <style lang="css" scoped>
-.double-input {
+    .double-input {
   display: flex;
   flex-direction: row;
 }
@@ -275,4 +270,3 @@ select {
   line-height: 1.3rem;
 }
 </style>
-

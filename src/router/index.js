@@ -3,6 +3,7 @@ import Home from '../views/Home.vue';
 import TalentMoz from '../views/TalentMoz';
 import OnitLogin from '../views/OnitLogin';
 import CreateUser from '../views/CreateUser';
+import CompleteRegistration from '../views/CompleteRegistration.vue'
 import PasswordRecoveryRequest from '../views/PasswordRecoveryRequest.vue';
 import PasswordRecoveryReset from '../views/PasswordRecoveryReset.vue';
 import Plataforma from "../views/Plataforma";
@@ -41,6 +42,14 @@ const routes = [
     path: '/users/create',
     name: 'CreateUsers',
     component: CreateUser,
+  },
+  {
+    path: '/users/create/finish',
+    name: 'complete-registration',
+    component: CompleteRegistration,
+    meta: {
+      requiresAuth: true  
+    }
   },
   {
     path: '/post/:id/',

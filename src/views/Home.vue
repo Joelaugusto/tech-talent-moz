@@ -170,7 +170,7 @@ import Evento from "../components/Evento";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import Footer from "../components/Footer";
 import Card from "../components/Card";
-import Cadastro from "../components/Cadastro";
+// import Cadastro from "../components/Cadastro";
 import Navbar from '../components/Onit/Navbar';
 
 //icons
@@ -187,7 +187,7 @@ export default {
     FontAwesomeIcon,
     Footer,
     Card,
-    Cadastro,
+    //Cadastro,
     EventNotify,
     Navbar
   },
