@@ -1,43 +1,30 @@
 <template>
     <form id="form-container" @submit="registrar">
     <h1 class="h1">Cadastro para Tech Talent Moz</h1>
-    <div class="equal-div">
-      <div>
+    <div class="input-container">
       <label class="label"> Nome e Apelido </label>
-      <input class="input" type="text" placeholder="Ex: Jhon Doe" required v-model="nome" />
+      <input class="input" type="text" placeholder="Ex: Jhon Doe" required v-model="formData.name" />
     </div>
-    <div>
-      <label class="label">E-mail</label>
-      <input
-        class="input"
-        type="email"
-        placeholder="Ex:jhon@email.com"
-        required
-        autocomplete="on" v-model="email"
-      />
-    </div>
-    </div>
-    <div>
+    <div class="input-container">
       <label class="label">Titulo</label>
       <input
         class="input"
         type="text"
         placeholder="Ex:backend, frontend, UX/UI..."
         required
-        autocomplete="on" v-model="titulos"
+        autocomplete="on" v-model="formData.titles"
       />
     </div>
-    <div class="double-input">
-      <div>
+    <div class="input-container">
         <label class="label"> Skills </label>
         <input
           class="input"
           type="text"
           placeholder="Ex: UX Designer, PHP, HTML, CSS, etc..."
-          v-model="skills"
+          v-model="formData.skills"
         />
-      </div>
-      <div>
+    </div>
+      <div class="input-container">
         <label class="label"> Taxa por Hora</label>
         <input
           class="input"
@@ -45,56 +32,48 @@
           min="0"
           placeholder="Ex: 250 por hora"
           require
-          v-model="taxa"
+          v-model="formData.tax"
         />
       </div>
-    </div>
-    <div class="double-input">
-      <div>
+      <div class="input-container">
         <label class="label"> Link do Portifolio</label>
-        <input class="input" type="url" placeholder="Link do Portifolio" />
+        <input class="input" type="url" placeholder="Link do Portifolio" v-model="formData.portifolio"/>
       </div>
-      <div>
+      <div class="input-container">
         <label class="label"> Disponibilidade </label>
-        <select class="input" id="disponibilidade" v-model="disponibilidade">
+        <select class="input" v-model="formData.availability">
           <option value="Disponibilidade">Disponibilidade</option>
           <option value="Full Time">Full time</option>
           <option value="Part-Time">Part Time</option>
         </select>
       </div>
-    </div>
-    <div class="equal-div">
-      <div >
+      <div class="input-container">
       <label class="label"> Link do Linkedin </label>
-      <input class="input" type="url" placeholder="Link do linkedin" v-model="linkedin"/>
+      <input class="input" type="url" placeholder="Link do linkedin" v-model="formData.linkedin"/>
     </div>
-    <div>
+    <div class="input-container">
       <label class="label">Link do Github</label>
-      <input class="input" type="url" placeholder="Link do Github" v-model="github" />
-    </div>
+      <input class="input" type="url" placeholder="Link do Github" v-model="formData.github" />
     </div>
     
     <!-- input para carregar foto-->
-    <div class="inputfile-box">
+    <div class="inputfile-box input-container">
       <input
         type="file"
-        id="file"
-        class="inputfile"
+        class="inputfile input"
         @change="uploadFile"
-        required
       />
-      <label id="alabel" for="file" placeholder="Adicionar Foto">
+      <label class="label" for="file" placeholder="Adicionar Foto">
         Adicionar Foto
         <div id="anexar">
-          <span id="file-name" class="file-box"> {{ inputFileText }}</span>
-          <span class="file-button"
-            ><i class="fa fa-upload" aria-hidden="true"></i>Anexar</span
+          <span class="file-box input"> {{ formData.image }}</span>
+          <span class="file-button">Anexar</span
           >
         </div>
       </label>
     </div>
-    <div>
-      <button class="btn" input type="Submit">Registar</button>
+    <div class="input-container">
+      <button class="btn input" type="Submit">Registar</button>
     </div>
   </form>
 </template>
@@ -104,89 +83,58 @@
 export default {
   data() {
     return {
-      inputFileText: "",
-      nome: "",
-      email: "",
-      titulos: "",
-      skills: "",
-      taxa: "",
-      portifolio: "",
-      linkedin: "",
-      github: "",
-      foto: ""
+      formData: {
+        image: null,
+        name: null,
+        titles: null,
+        skills: null,
+        tax: null,
+        portifolio: null,
+        linkedin: null,
+        github: null,}
     };
   },
   methods: {
     uploadFile: function (e) {
-      console.log(e.target.value);
-      this.inputFileText = e.target.value;
+      this.formData.image = e.target.value;
     },
     registrar: async function (e){
       e.preventDefault();
 
-      const nome = this.nome;
-      const email = this.email;
-      const skills = this.skills;
-      const taxa = this.taxa;
-      const portifolio = this.portifolio;
-      const linkedin = this.linkedin;
-      const github = this.github;
-      const titulos = this.titulos.toLowerCase().split(',');
-      await api.post("/",{nome,email,titulos,skills,taxa,portifolio,linkedin, github});
+      const {name, tax,portifolio, linkedin, github, image} = this.formData;
+      const titles = this.formData.titles.toLowerCase().split(',');
+      const skills = this.formData.skills.toLowerCase().split(',');
 
-      console.log({nome,email,titulos,skills,taxa,portifolio,linkedin, github});
-
-      //o que fazer depois de registrar???
-      this.$router.push('/talentmoz');
+      await api.post("/api/techtalent/developers",{name,titles,skills,tax,portifolio,linkedin, github, image})
+      .then(()=>{
+        alert('Registro Complecto com sucesso!')
+        this.$router.push('/onit');
+      }).catch(()=>{
+        alert('falha ao completar o registro')
+      });
     }
   },
 };
 </script>
 
 <style lang="css" scoped>
-    .double-input {
-  display: flex;
-  flex-direction: row;
-}
-
-.double-input div:first-child input {
-  width: 20em;
-  margin-right: 1em;
-}
-
-.double-input div:last-child input,
-select {
-  width: 10em;
-}
-
-.equal-div{
-  display: flex;
-}
-
-.equal-div div input{
-  width: 15em;
-}
-.equal-div div:first-child input{
-  margin-right: 1em;
-}
 
 #form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: white;
-  box-shadow: 0.02rem 0.02rem 0.9rem #1f1f1f66;
-  border-radius: 3.8rem;
-  padding: 5rem;
+  background: #FFFFFF;
+  box-shadow: 0px 2px 20px 9px rgba(31, 31, 31, 0.04);
+  border-radius: 4px;
+  padding: 50px;
+  width: 648px;
 }
 
-#disponibilidade {
-  width: 11em;
+.input-container {
+  display: grid;
 }
+
+.file-box,.input-container .input{width: 100%;}
 
 .input {
-  width: 32em;
-  height: 3.6rem;
+  height: 6.1rem;
   margin-top: 1rem;
   background: #ffffff;
   border: 0.01rem solid rgba(207, 216, 220, 0.5);
@@ -211,12 +159,15 @@ select {
 }
 
 .btn {
-  width: 53rem;
+  display: flex;
   height: 4.6rem;
   background: linear-gradient(135deg, #79beff 0%, #448aff 100%);
   border-radius: 0.6rem;
   margin-top: 3rem;
   border: none;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }
 
 .label {
@@ -230,7 +181,8 @@ select {
 }
 
 .inputfile {
-  display: none;
+  position: absolute;
+  opacity: 0;
 }
 
 .container {
@@ -239,23 +191,27 @@ select {
 }
 
 .file-box {
-  width: 42rem;
-  height: 3.6rem;
+  width: 100%;
   border: 0.01rem solid rgba(207, 216, 220, 0.5);
   background: #ffffff;
   border-radius: 0.6rem;
-  cursor: pointer
+  cursor: pointer;
+  margin-bottom: 1rem;
+  border-radius: 0.6rem 0 0 0.6rem;
+  align-items: center;
 }
 
 .file-button {
-  width: 10.4rem;
-  height: 3.6rem;
   background: linear-gradient(135deg, #79beff 0%, #448aff 100%);
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
   cursor: pointer;
+  width: 135.24px;
+  height: 48.8px;
+  align-self: center;
+  border-radius: 0 0.6rem 0.6rem 0;
 }
 
 #anexar {
@@ -263,10 +219,4 @@ select {
   border-radius: 0.6rem;
 }
 
-#alabel {
-  font-family: "Circular Std";
-  font-weight: normal;
-  font-size: 1.6rem;
-  line-height: 1.3rem;
-}
 </style>

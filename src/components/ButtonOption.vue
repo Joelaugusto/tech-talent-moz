@@ -11,7 +11,7 @@
 export default {
   props: {
     title: String,
-    icon: Object,
+    icon: String,
   },
   components: {
     //FontAwesomeIcon,

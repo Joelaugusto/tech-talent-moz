@@ -14,7 +14,7 @@
     <div class="plataforma-div">
       <h1>Bem Vindo ao Onit!</h1>
       <Progress :percentage="25" />
-      <slot></slot>
+      <slot class="slot"></slot>
     </div>
     <div class="plataforma-div div-eventos">
       <h2>Eventos</h2>
@@ -156,6 +156,7 @@ export default {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .plataforma-div:first-child,
@@ -187,5 +188,10 @@ export default {
 
 .div-eventos div {
   margin-bottom: 3.2rem;
+}
+
+.slot{
+  display: flex;
+  justify-content: center;
 }
 </style>

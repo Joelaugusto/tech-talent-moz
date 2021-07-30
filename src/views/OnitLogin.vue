@@ -53,9 +53,7 @@ export default {
   },
   beforeMount(){
     if(localStorage.getItem('access-token')){
-      api.get('api/auth/me',() => {
         this.afterLogin();
-      });
     }
   }
 };

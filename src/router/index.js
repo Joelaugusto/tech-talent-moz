@@ -86,7 +86,6 @@ let router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  console.log(to, from, next)
   if(to.matched.some(record => record.meta.requiresAuth)) {
     if (localStorage.getItem('access-token') == null) {
         next({path: '/auth/login'})
