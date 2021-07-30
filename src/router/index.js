@@ -9,6 +9,8 @@ import Plataforma from "../views/Plataforma";
 import BlogHome from "../views/BlogHome"
 import PostDetails from "../views/PostDetails"
 
+import api from '../services/api'
+
 const routes = [
   {
     path: '/',
@@ -22,7 +24,7 @@ const routes = [
   },
   {
     path: '/auth/login',
-    name: 'Login',
+    name: 'login',
     component: OnitLogin,
   },
   {
@@ -49,6 +51,9 @@ const routes = [
     path: '/onit',
     name: 'Onit',
     component: Plataforma,
+    meta: {
+      requiresAuth: true  
+    }
   },
   {
     path: '/blog',
@@ -65,9 +70,28 @@ const routes = [
   }
 ]
 
-const router = createRouter({
+
+let router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  console.log(to, from, next)
+  if(to.matched.some(record => record.meta.requiresAuth)) {
+    if (localStorage.getItem('access-token') == null) {
+        next({path: '/auth/login'})
+    } else {
+      api.get('api/auth/me').then((user)=>{
+        next({params: user.data})
+      }).catch(()=>{
+        next({path: '/auth/login'})
+      })
+    }
+  }
+  next() 
+})
+
+
 
 export default router

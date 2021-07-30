@@ -9,7 +9,7 @@
       <button-option titulo="Sessão em grupo" :icon="Chat" />
       <button-option titulo="Currículo" :icon="Document" />
       <button-option titulo="Comunidades" :icon="Category" />
-      <button-option titulo="Sair" :icon="LogOut" id="logout" />
+      <button-option titulo="Sair" @click="logout()" :icon="LogOut" id="logout" />
     </div>
     <div class="plataforma-div">
       <h1>Bem Vindo ao Onit!</h1>
@@ -230,6 +230,12 @@ export default {
       Calendar,
     };
   },
+  methods: {
+    logout(){
+      localStorage.removeItem('access-token');
+      this.$router.push({path: '/'})
+    }
+  }
 };
 </script>
 
