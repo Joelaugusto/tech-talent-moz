@@ -52,9 +52,7 @@ export default {
     }
   },
   beforeMount(){
-    if(localStorage.getItem('access-token')){
         this.afterLogin();
-    }
   }
 };
 </script>

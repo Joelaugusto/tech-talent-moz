@@ -93,6 +93,7 @@ router.beforeEach((to, from, next) => {
       api.get('api/auth/me').then((user)=>{
         next({params: user.data})
       }).catch(()=>{
+        localStorage.removeItem('access-token')
         next({path: '/auth/login'})
       })
     }
