@@ -106,14 +106,18 @@ export default {
       const skills = this.formData.skills.toLowerCase().split(',');
 
       const availability = this.formData.availability === 'Full Time';
-      const image = new FormData();
-      image.append('file', selectedFile, selectedFile.name)
-      image.append('data', JSON.stringify({name,titles,skills,tax,portifolio,linkedin, github, image, availability}))
- 
 
-      await api.post("/api/techtalent/developers",image)
-      .then(()=>{
-        alert('Registro Complecto com sucesso!')
+      const image = new FormData();
+      image.append('image',selectedFile);
+      
+
+      await api.post("/api/techtalent/developers",{name,titles,skills,tax,portifolio,linkedin, github, availability})
+      .then(async()=>{
+        await api.post("/api/techtalent/developers/image",image)
+        .then(() => {
+          alert('Registro Complecto com sucesso!')
+        })
+        .catch(()=>{alert('Erro ao fazer upload da imagem!')})
         this.$router.push('/onit');
       }).catch(()=>{
         alert('falha ao completar o registro')
