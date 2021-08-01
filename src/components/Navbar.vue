@@ -18,7 +18,7 @@
         <p id="ttm">Tech Talent Moz</p>
       </div>
       <div class="dropbox-container" :style="hide">
-        <select class="dropbox" @change="onSearch(search)" v-model="search.avatarability">
+        <select class="dropbox" @change="onSearch(search)" v-model="search.availability">
           <option value="Disponibilidade">Disponibilidade</option>
           <option value="full-time">Full-time</option>
           <option value="part-time">Part-Time</option>
@@ -47,7 +47,7 @@ export default {
       hide: "display: none",
       search: {
         search : null,
-        availability:null,
+        availability: 'Disponibilidade',
         taxMin: null,
         taxMax:null,
       }

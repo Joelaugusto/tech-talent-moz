@@ -41,7 +41,7 @@ export default {
 
       const {taxMax, taxMin} = searchValues;
 
-      const skills = searchValues.search.split(",");
+      const skills = searchValues.search ? searchValues.search.split(","): null;
 
       const availability = searchValues.availability === 'Full Time';
 
