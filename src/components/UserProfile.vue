@@ -33,7 +33,7 @@ export default {
     name: String,
     titles: [Object],
     skills : [Object],
-    availability: String,
+    availability: Boolean,
     portifolio: String,
     linkedin: String,
     github: String,

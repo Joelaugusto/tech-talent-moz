@@ -7,7 +7,7 @@
       </div>
       <div class="input">
         <img :src="images.searchIcon" alt=""/>
-        <input type="text" placeholder="Procurar" @keyup="onSearch(pesquisa)" v-model="pesquisa.search" />
+        <input type="text" placeholder="Procurar" @keyup="onSearch(search)" v-model="search.search" />
       </div>
       <button class="btn" @click="autoHide">Filtrar</button>
     </div>
@@ -18,13 +18,13 @@
         <p id="ttm">Tech Talent Moz</p>
       </div>
       <div class="dropbox-container" :style="hide">
-        <select class="dropbox" @change="onSearch(pesquisa)" v-model="pesquisa.disponiblidade">
+        <select class="dropbox" @change="onSearch(search)" v-model="search.avatarability">
           <option value="Disponibilidade">Disponibilidade</option>
           <option value="full-time">Full-time</option>
           <option value="part-time">Part-Time</option>
         </select>
-        <input class="dropbox" type="number" placeholder="Taxa Mínima por Hora" min="0" @change="onSearch(pesquisa)" v-model="pesquisa.taxaMin"/>
-        <input class="dropbox" type="number" placeholder="Taxa Maxima por Hora" min="0" @change="onSearch(pesquisa)" v-model="pesquisa.taxaMax"/>
+        <input class="dropbox" type="number" placeholder="Taxa Mínima por Hora" min="0" @change="onSearch(search)" v-model="search.taxMin"/>
+        <input class="dropbox" type="number" placeholder="Taxa Maxima por Hora" min="0" @change="onSearch(search)" v-model="search.taxMax"/>
       </div>
     </div>
     <div></div>
@@ -45,11 +45,11 @@ export default {
         onitLogoColorFull, onitLogo,searchIcon,
       },
       hide: "display: none",
-      pesquisa: {
-        search : '',
-        disponiblidade:'',
-        taxaMin:'',
-        taxaMax:'',
+      search: {
+        search : null,
+        availability:null,
+        taxMin: null,
+        taxMax:null,
       }
     };
   },

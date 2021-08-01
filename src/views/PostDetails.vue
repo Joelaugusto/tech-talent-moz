@@ -42,7 +42,6 @@ export default {
     //bug
     this.post = (await api.post("/post", { _id })).data;
     this.comments = this.post.post.comments;
-    console.log(this.post);
   },
   methods: {
     updateComment: async function () {
