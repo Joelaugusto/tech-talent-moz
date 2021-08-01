@@ -5,7 +5,7 @@
 <script>
 export default {
   props: {
-    photo: Object,
+    photo: String,
   },
 };
 </script>

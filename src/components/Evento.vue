@@ -22,7 +22,7 @@
       <photo :photo="IMG" />
 
     </div>
-    <a class="adicionar-calendar"><FontAwesomeIcon icon="plus"/> Adicionar no Google Calendar</a>
+    <a class="adicionar-calendar"><FontAwesomeIcon icon="plus" ref="icone"/> Adicionar no Google Calendar</a>
   </div>
 </template>
 

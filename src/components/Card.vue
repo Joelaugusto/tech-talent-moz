@@ -14,7 +14,7 @@
 export default {
   props: {
     title: String,
-    body: Object,
+    body: String,
     icon: String,
   },
 };
