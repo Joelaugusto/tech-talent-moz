@@ -42,7 +42,6 @@
       <div class="input-container">
         <label class="label"> Disponibilidade </label>
         <select class="input" v-model="formData.availability">
-          <option value="Disponibilidade">Disponibilidade</option>
           <option value="Full Time">Full Time</option>
           <option value="Part-Time">Part Time</option>
         </select>
@@ -91,7 +90,8 @@ export default {
         tax: null,
         portifolio: null,
         linkedin: null,
-        github: null,}
+        github: null,
+        availability: 'Full Time'}
     };
   },
   methods: {
