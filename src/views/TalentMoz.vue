@@ -48,6 +48,7 @@ export default {
   created:async function () {
     await api.get("/api/techtalent/developers").then((result) => {
       this.users = result.data.content;
+      console.log(result.data.content)
     }).catch(error=>{console.log(error)});
 
   },

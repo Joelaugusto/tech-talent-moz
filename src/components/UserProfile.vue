@@ -63,23 +63,22 @@ export default {
 
 <style lang="css" scoped>
 .user-profile {
-  display: flex;
-  flex-direction: row;
-  width: 327px;
+  display: grid;
+  grid-template-columns: 91px 1fr;
+  min-width: 327px;
   height: 145px;
   border: 1px solid rgba(207, 216, 220, 0.5);
   margin: 10px;
   border-radius: 6px;
+  flex-grow: 1;
+  padding: 23px 29px;
 }
 
 .pic {
   width: 62px;
   height: 62px;
-  margin-top: 22px;
-  margin-left: 29px;
   border-radius: 50%;
   border: none;
-  /*background: url("./../assets/bg_user.png");*/
 }
 
 .div-link {
@@ -96,18 +95,16 @@ export default {
 .user-details {
   /*width: 169px;*/
   height: 102px;
-  margin-top: 23px;
-  margin-left: 21px;
 }
 
-.user-details div,
-strong,
-p {
+.user-details div{
   margin-bottom: 5px;
 }
 
 .prof-time {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .user-prof {
@@ -148,7 +145,6 @@ p {
   width: 2px;
   border-radius: 2px;
   background: #afafbd;
-  margin: 6px 12px;
 }
 
 .slash {
@@ -156,7 +152,7 @@ p {
   width: 1px;
   background: #afafbd;
   margin: 6px 12px;
-      margin-top: 3px;
+  margin-top: 3px;
 }
 
 
