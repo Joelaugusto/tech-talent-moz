@@ -2,7 +2,7 @@
   <div class="conteiner">
     <h2 class="title">{{ title }}</h2>
     <p class="content">{{ mainText }}</p>
-    <button class="btn">{{ buttonText }}</button>
+    <router-link to="/users/complete-registration" class="btn">{{ buttonText }}</router-link>
   </div>
 </template>
 
@@ -62,6 +62,12 @@ export default {
   letter-spacing: -0.15px;
   color: #78909c;
 }
+
+a.btn {
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  }
 .btn {
   width: 148px;
   height: 48px;

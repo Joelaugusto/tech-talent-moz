@@ -5,8 +5,13 @@ const axios = require('axios').default;
 
 const api = axios.create({
     baseURL: 'http://localhost:8080',
-    headers: {'Content-Type': 'application/json','Authorization':localStorage.getItem('access-token')}
 });
+
+api.interceptors.request.use(config => {
+    config.headers['Authorization'] = localStorage.getItem('access-token');
+    return config;
+})
+
 
 export default api;
 

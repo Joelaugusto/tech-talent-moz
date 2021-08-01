@@ -9,6 +9,7 @@ import PasswordRecoveryReset from '../views/PasswordRecoveryReset.vue';
 import Plataforma from "../views/Plataforma";
 import BlogHome from "../views/BlogHome"
 import PostDetails from "../views/PostDetails"
+import NotFoundPage from "../views/NotFoundPage.vue"
 
 import api from '../services/api'
 
@@ -44,9 +45,10 @@ const routes = [
     component: CreateUser,
   },
   {
-    path: '/users/create/finish',
+    path: '/users/complete-registration',
     name: 'complete-registration',
     component: CompleteRegistration,
+    props: true,
     meta: {
       requiresAuth: true  
     }
@@ -60,6 +62,7 @@ const routes = [
     path: '/onit',
     name: 'Onit',
     component: Plataforma,
+    props: true,
     meta: {
       requiresAuth: true  
     }
@@ -69,14 +72,9 @@ const routes = [
     name: 'Blog',
     component: BlogHome,
   },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+  { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFoundPage },
+  // if you omit the last `*`, the `/` character in params will be encoded when resolving or pushing
+  { path: '/:pathMatch(.*)', name: 'bad-not-found', component: NotFoundPage },
 ]
 
 
@@ -85,15 +83,19 @@ let router = createRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
+
+router.beforeEach(async (to, from, next) => {
+
   if(to.matched.some(record => record.meta.requiresAuth)) {
     if (localStorage.getItem('access-token') == null) {
         next({path: '/auth/login'})
     } else {
       api.get('api/auth/me').then((user)=>{
-        next({params: user.data})
+        next({params: {
+          user: user.data,
+        }})
       }).catch(()=>{
-        localStorage.removeItem('access-token')
+        //localStorage.removeItem('access-token')
         next({path: '/auth/login'})
       })
     }

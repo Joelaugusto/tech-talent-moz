@@ -43,7 +43,7 @@
         <label class="label"> Disponibilidade </label>
         <select class="input" v-model="formData.availability">
           <option value="Disponibilidade">Disponibilidade</option>
-          <option value="Full Time">Full time</option>
+          <option value="Full Time">Full Time</option>
           <option value="Part-Time">Part Time</option>
         </select>
       </div>
@@ -61,12 +61,12 @@
       <input
         type="file"
         class="inputfile input"
-        @change="uploadFile"
+        @change="selectFile"
       />
       <label class="label" for="file" placeholder="Adicionar Foto">
         Adicionar Foto
         <div id="anexar">
-          <span class="file-box input"> {{ formData.image }}</span>
+          <span class="file-box input"> {{ formData.selectedFile.name }}</span>
           <span class="file-button">Anexar</span
           >
         </div>
@@ -84,7 +84,7 @@ export default {
   data() {
     return {
       formData: {
-        image: null,
+        selectedFile: '',
         name: null,
         titles: null,
         skills: null,
@@ -95,17 +95,23 @@ export default {
     };
   },
   methods: {
-    uploadFile: function (e) {
-      this.formData.image = e.target.value;
+    selectFile: function (e) {
+      this.formData.selectedFile = e.target.files[0];
     },
     registrar: async function (e){
       e.preventDefault();
 
-      const {name, tax,portifolio, linkedin, github, image} = this.formData;
+      const {name, tax,portifolio, linkedin, github, selectedFile} = this.formData;
       const titles = this.formData.titles.toLowerCase().split(',');
       const skills = this.formData.skills.toLowerCase().split(',');
 
-      await api.post("/api/techtalent/developers",{name,titles,skills,tax,portifolio,linkedin, github, image})
+      const availability = this.formData.availability === 'Full Time';
+      const image = new FormData();
+      image.append('file', selectedFile, selectedFile.name)
+      image.append('data', JSON.stringify({name,titles,skills,tax,portifolio,linkedin, github, image, availability}))
+ 
+
+      await api.post("/api/techtalent/developers",image)
       .then(()=>{
         alert('Registro Complecto com sucesso!')
         this.$router.push('/onit');

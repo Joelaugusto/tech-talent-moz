@@ -67,6 +67,7 @@ export default {
         calendar,},
         events: [
           {
+            id: 1,
             type: "Network",
             title: "Tic Tech Talk-Business",
             icon: "",
@@ -76,6 +77,7 @@ export default {
             date: "02 de Fevereiro de 2021"
           },
           {
+            id: 2,
             type: "Network",
             title: "Tic Tech Talk-Business",
             icon: "",
@@ -85,6 +87,7 @@ export default {
             date: "02 de Fevereiro de 2021"
           },
           {
+            id: 3,
             type: "Network",
             title: "Tic Tech Talk-Business",
             icon: "",
@@ -94,6 +97,7 @@ export default {
             date: "02 de Fevereiro de 2021"
           },
           {
+            id: 4,
             type: "Network",
             title: "Tic Tech Talk-Business",
             icon: "",
@@ -103,6 +107,7 @@ export default {
             date: "02 de Fevereiro de 2021"
           },
           {
+            id: 5,
             type: "Network",
             title: "Tic Tech Talk-Business",
             icon: "",
@@ -112,6 +117,7 @@ export default {
             date: "02 de Fevereiro de 2021"
           },
           {
+            id: 6,
             type: "Network",
             title: "Tic Tech Talk-Business",
             icon: "",
@@ -121,6 +127,7 @@ export default {
             date: "02 de Fevereiro de 2021"
           },
           {
+            id: 7,
             type: "Network",
             title: "Tic Tech Talk-Business",
             icon: "",

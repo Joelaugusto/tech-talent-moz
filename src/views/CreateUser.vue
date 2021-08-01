@@ -58,9 +58,6 @@ export default {
     afterLogin () {
         this.method.push('/onit')
     }
-  },
-  beforeMount(){
-    this.afterLogin();
   }
 };
 </script>
