@@ -16,7 +16,7 @@
 
 <script>
 import FillperfilCard from "../components/Onit/FillperfilCard.vue";
-import OnitContainer from '../components/Onit/OnitContainer.vue';
+import OnitContainer from '../components/Onit/OnitContainer/OnitContainer.vue';
 
 export default {
   components: {

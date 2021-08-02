@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import OnitContainer from '../components/Onit/OnitContainer.vue';
+import OnitContainer from '../components/Onit/OnitContainer/OnitContainer.vue';
 import CompleteRegistrationForm from '../components/Onit/CompleteRegistrationForm.vue'
     export default {
         components: { OnitContainer, CompleteRegistrationForm }
