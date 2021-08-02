@@ -43,7 +43,6 @@ export default {
       this.closeNewComment();
       const comment = this.newComment;
       const _id = this.postId;
-      console.log(_id);
       const email = "joelaugusto97@gmail.com ";
       await api.post("/comments", { comment, email, _id });
       this.updateComment();

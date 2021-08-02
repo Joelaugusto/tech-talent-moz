@@ -1,17 +1,14 @@
 <template>
   <div>
     <AuthContainer>
-      <form class="form-login" @submit="login">
-        <h1>Login</h1>
-        <label>Email ID</label>
-        <input type="email" required class="login-input" v-model="form.email"/>
-
-        <label>Palavra Passe</label>
-        <input type="password" class="login-input" v-model="form.password"/>
-
+      <form class="form-login" @submit="sendPasswordReset">
+        <h1>Recuperação de Conta</h1>
+        <label>Password</label>
+        <input type="password" required class="login-input"  v-model="form.password"/>
+        <label>Confirmar Password</label>
+        <input type="password" required class="login-input"  v-model="form.confirmPassword"/>
         <input type="submit" value="Entrar" class="login-input" />
-        <router-link to="/auth/password/request" class="btn-form">Esqueceu Password?</router-link>
-        <router-link to="/users/create" class="btn-form">Não tem conta? Registe aqui.</router-link>
+        <router-link to="/auth/login" class="btn-form">Retornar a tela de Login.</router-link>
       </form>
     </AuthContainer>
   </div>
@@ -23,37 +20,27 @@ import AuthContainer from '../components/Onit/AuthContainer.vue';
 export default {
   data() {
     return {
-      page:{
-        login: true,
-        recuperacao: false,
-        linkMsg: "Não tem conta? Registe aqui.",
-      },
       form: {
-        email:null,password:null, passwordConfirm:null,
+        password:null,confirmPassword:null,token:null,
       },
-      method: {push: (path)=>{this.$router.push({path: path})}}
+      method: {
+        push: (path)=>{this.$router.push({path: path})},
+        }
+
     };
   },
   components: { AuthContainer},
   methods: {
-    login: async function (event) {
-      event.preventDefault();
-      const {email, password} = this.form;
-      await api.post('api/auth',{email,password}).then((token)=>{
-              localStorage.setItem('access-token',`${token.data.type} ${token.data.accessToken}`)
-              this.afterLogin();
-            }).catch((err)=>{
-              alert('O email ou senha está incorreto');
-              console.log(err)
-            })
-    },
-    afterLogin () {
-        this.method.push('/onit')
+    sendPasswordReset:async function(e) {
+      e.preventDefault();
+      const {password, confirmPassword} = this.form;
+      const token = this.$route.params.token;
+      await api.post('api/users/password/request',{password, confirmPassword, token}).then((res)=>{
+          alert(res.data)
+          this.method.push('/auth/login')
+        }).catch(()=>{alert(`Erro ao recuperar Senha`)});
     }
   },
-  beforeMount(){
-        this.afterLogin();
-  }
 };
 </script>
 
@@ -68,7 +55,7 @@ export default {
   font-family: Roboto;
   font-style: normal;
   font-weight: 900;
-  font-size: 4.8rem;
+  font-size: 3.9rem;
   line-height: 2rem;
   /* identical to box height, or 42% */
   letter-spacing: 0.03rem;
@@ -137,7 +124,7 @@ export default {
   font-size: 1.3rem;
   line-height: 1.3rem;
   /* identical to box height, or 100% */
-  margin-bottom: 15px;
+
   display: flex;
   align-items: center;
   text-align: center;

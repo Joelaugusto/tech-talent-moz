@@ -1,17 +1,19 @@
 <template>
   <div>
     <AuthContainer>
-      <form class="form-login" @submit="login">
-        <h1>Login</h1>
+      <form class="form-login" @submit="createUser">
+        <h1>Cadastrar-se</h1>
         <label>Email ID</label>
-        <input type="email" required class="login-input" v-model="form.email"/>
+        <input type="email" required class="login-input"  v-model="form.email"/>
 
-        <label>Palavra Passe</label>
+        <label>Escolha uma Palavra Passe</label>
         <input type="password" class="login-input" v-model="form.password"/>
 
+        <label>Confirmar Palavra Passe</label>
+        <input type="password" class="login-input" v-model="form.confirmPassword"/>
+
         <input type="submit" value="Entrar" class="login-input" />
-        <router-link to="/auth/password/request" class="btn-form">Esqueceu Password?</router-link>
-        <router-link to="/users/create" class="btn-form">Não tem conta? Registe aqui.</router-link>
+        <router-link to="/auth/password/request" class="btn-form">Já tem conta? Inicia uma sessão</router-link>
       </form>
     </AuthContainer>
   </div>
@@ -23,11 +25,6 @@ import AuthContainer from '../components/Onit/AuthContainer.vue';
 export default {
   data() {
     return {
-      page:{
-        login: true,
-        recuperacao: false,
-        linkMsg: "Não tem conta? Registe aqui.",
-      },
       form: {
         email:null,password:null, passwordConfirm:null,
       },
@@ -36,23 +33,31 @@ export default {
   },
   components: { AuthContainer},
   methods: {
-    login: async function (event) {
+ 
+    createUser: async function (event){
+      event.preventDefault();
+      const {email, password,confirmPassword} = this.form;
+      if(password === confirmPassword){
+        await api.post('api/users',{email,password}).then(()=>{
+          this.login(event);
+        }).catch(err=>console.log(err));
+       }else{
+         alert('as senhas não conscidem!')
+       }
+     },
+     login: async function (event) {
       event.preventDefault();
       const {email, password} = this.form;
       await api.post('api/auth',{email,password}).then((token)=>{
               localStorage.setItem('access-token',`${token.data.type} ${token.data.accessToken}`)
               this.afterLogin();
             }).catch((err)=>{
-              alert('O email ou senha está incorreto');
               console.log(err)
             })
     },
     afterLogin () {
         this.method.push('/onit')
     }
-  },
-  beforeMount(){
-        this.afterLogin();
   }
 };
 </script>
@@ -137,7 +142,7 @@ export default {
   font-size: 1.3rem;
   line-height: 1.3rem;
   /* identical to box height, or 100% */
-  margin-bottom: 15px;
+
   display: flex;
   align-items: center;
   text-align: center;

@@ -5,7 +5,7 @@
       <router-link to="/" class="links">Home</router-link>
       <router-link to="/blog" class="links">Blog</router-link>
       <router-link to="/talentmoz" class="links">Tech Talent Moz</router-link>
-      <router-link to="/login" class="links">Entrar na plataforma</router-link>
+      <router-link to="/auth/login" class="links">Entrar na plataforma</router-link>
       <!--<button @click="openModal" class="links">
           Cadastrar-se para o TIM
         </button>-->

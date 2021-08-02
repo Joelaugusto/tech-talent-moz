@@ -76,8 +76,6 @@ export default {
   },
   async created() {
     this.posts = (await api.get("/posts", {})).data;
-    console.log(this.posts);
-    console.log("yap");
   },
 };
 </script>

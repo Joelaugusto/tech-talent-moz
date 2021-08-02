@@ -21,8 +21,6 @@ export default {
 
 <style lang="css" scoped>
     .footer{
-        position: absolute;
-        bottom: 0;
         display: flex;
         justify-content: space-between;
         height: 37px;

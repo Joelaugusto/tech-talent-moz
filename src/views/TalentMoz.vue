@@ -37,11 +37,17 @@ export default {
   },
 
   methods: {
-    onSearch:async function (e) {
-      let skills = "" + e.search;
-      e.search = skills.split(",");
-      await api.get("/api/techtalent/developers",{skills}).then((result) => {
+    onSearch:async function (searchValues) {
+
+      const {taxMax, taxMin} = searchValues;
+
+      const skills = searchValues.search ? searchValues.search.split(","): null;
+
+      const availability = searchValues.availability === 'Full Time';
+
+      await api.get("/api/techtalent/developers",{skills, availability, taxMax, taxMin}).then((result) => {
       this.users = result.data.content;
+      console.log(result.data.content)
     }).catch(error=>{console.log(error)});
     },
   },

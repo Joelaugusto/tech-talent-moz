@@ -2,9 +2,16 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue';
 import TalentMoz from '../views/TalentMoz';
 import OnitLogin from '../views/OnitLogin';
+import CreateUser from '../views/CreateUser';
+import CompleteRegistration from '../views/CompleteRegistration.vue'
+import PasswordRecoveryRequest from '../views/PasswordRecoveryRequest.vue';
+import PasswordRecoveryReset from '../views/PasswordRecoveryReset.vue';
 import Plataforma from "../views/Plataforma";
 import BlogHome from "../views/BlogHome"
 import PostDetails from "../views/PostDetails"
+import NotFoundPage from "../views/NotFoundPage.vue"
+
+import api from '../services/api'
 
 const routes = [
   {
@@ -18,9 +25,33 @@ const routes = [
     component: TalentMoz,
   },
   {
-    path: '/login',
-    name: 'Login',
+    path: '/auth/login',
+    name: 'login',
     component: OnitLogin,
+  },
+  {
+    path: '/auth/password/request',
+    name: 'PasswordRecoveryRequest',
+    component: PasswordRecoveryRequest,
+  },
+  {
+    path: '/auth/password/reset/:token',
+    name: 'PasswordRecoveryReset',
+    component: PasswordRecoveryReset,
+  },
+  {
+    path: '/users/create',
+    name: 'CreateUsers',
+    component: CreateUser,
+  },
+  {
+    path: '/users/complete-registration',
+    name: 'complete-registration',
+    component: CompleteRegistration,
+    props: true,
+    meta: {
+      requiresAuth: true  
+    }
   },
   {
     path: '/post/:id/',
@@ -31,25 +62,47 @@ const routes = [
     path: '/onit',
     name: 'Onit',
     component: Plataforma,
+    props: true,
+    meta: {
+      requiresAuth: true  
+    }
   },
   {
     path: '/blog',
     name: 'Blog',
     component: BlogHome,
   },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+  { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFoundPage },
+  // if you omit the last `*`, the `/` character in params will be encoded when resolving or pushing
+  { path: '/:pathMatch(.*)', name: 'bad-not-found', component: NotFoundPage },
 ]
 
-const router = createRouter({
+
+let router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+
+router.beforeEach(async (to, from, next) => {
+
+  if(to.matched.some(record => record.meta.requiresAuth)) {
+    if (localStorage.getItem('access-token') == null) {
+        next({path: '/auth/login'})
+    } else {
+      api.get('api/auth/me').then((user)=>{
+        next({params: {
+          user: user.data,
+        }})
+      }).catch(()=>{
+        //localStorage.removeItem('access-token')
+        next({path: '/auth/login'})
+      })
+    }
+  }
+  next() 
+})
+
+
 
 export default router
