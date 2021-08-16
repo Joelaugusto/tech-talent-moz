@@ -29,7 +29,6 @@ export default {
 .conteiner {
   display: flex;
   flex-direction: column;
-  margin: 0 5vw;
   background: #fff;
   margin-bottom: 20px;
   padding: 40px 60px;
@@ -55,7 +54,6 @@ export default {
   color: #000000;
 }
 .content {
-  height: 72px;
   font-family: Roboto;
   font-size: 14px;
   line-height: 24px;
