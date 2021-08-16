@@ -1,8 +1,8 @@
 <template>
   <div>
-    <p id="progress-text">Perfil Completo: {{percent}}%</p>
+    <p id="progress-text">Perfil Completo: {{percent.toFixed(2)}}%</p>
     <div id="progress">
-      <div :style="'width:'+percent+'%'">
+      <div :style= "`width:${percent}%`">
       </div>
     </div>
   </div>

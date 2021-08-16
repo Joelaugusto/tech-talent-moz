@@ -2,7 +2,7 @@
   <div id="plataforma">
     <LinkBar />
     <div class="plataforma-div">
-      <Header :percent="10"/>
+      <Header :percent="percent"/>
       <slot class="slot"></slot>
     </div>
     <EventBar />
@@ -15,11 +15,15 @@ import LinkBar from './LinkBar/LinkBar.vue'
 import EventBar from './EventBar.vue'
 
 export default {
+  props: {
+    percent: Number
+  },
   components: {
     Header,
     LinkBar,
     EventBar,
   }
+
 };
 </script>
 

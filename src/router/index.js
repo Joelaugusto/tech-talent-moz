@@ -13,7 +13,7 @@ import NotFoundPage from "../views/NotFoundPage.vue"
 
 import api from '../services/api'
 
-const routes = [
+let routes = [
   {
     path: '/',
     name: 'Home',
@@ -48,7 +48,6 @@ const routes = [
     path: '/users/complete-registration',
     name: 'complete-registration',
     component: CompleteRegistration,
-    props: true,
     meta: {
       requiresAuth: true  
     }
@@ -62,7 +61,6 @@ const routes = [
     path: '/onit',
     name: 'Onit',
     component: Plataforma,
-    props: true,
     meta: {
       requiresAuth: true  
     }
@@ -90,10 +88,9 @@ router.beforeEach(async (to, from, next) => {
     if (localStorage.getItem('access-token') == null) {
         next({path: '/auth/login'})
     } else {
-      api.get('api/auth/me').then((user)=>{
-        next({params: {
-          user: user.data,
-        }})
+     await api.get('api/auth/me').then((loggedUser)=>{
+        to.params.user = loggedUser.data;
+        next()
       }).catch(()=>{
         //localStorage.removeItem('access-token')
         next({path: '/auth/login'})
